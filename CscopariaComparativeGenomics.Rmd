@@ -790,6 +790,245 @@ RCircos.Link.Plot(links, track.num = 1)
 ```
 
 
+Checking for recombination suppression
+
+```{r}
+
+recombinationchr1 <- rep(0,(length(chr1[,2])-1))
+for (i in 1:(length(chr1[,2])-1)) recombinationchr1[i] <- (chr1[i+1,2] - chr1[i,2]) 
+recombinationchr1>1000000
+chr1[recombinationchr1>1000000,]
+#2, from the same LG
+chr1
+
+recombinationchr2 <- rep(0,(length(chr2[,2])-1))
+for (i in 1:(length(chr2[,2])-1)) recombinationchr2[i] <- (chr2[i+1,2] - chr2[i,2]) 
+recombinationchr2>1000000
+chr2[recombinationchr2>1000000,]
+#0
+chr2
+
+recombinationchr3 <- rep(0,(length(chr3[,2])-1))
+for (i in 1:(length(chr3[,2])-1)) recombinationchr3[i] <- (chr3[i+1,2] - chr3[i,2]) 
+recombinationchr3>1000000
+chr3[recombinationchr3>1000000,]
+#1, from the same LG
+chr3
+
+recombinationchr4 <- rep(0,(length(chr4[,2])-1))
+for (i in 1:(length(chr4[,2])-1)) recombinationchr4[i] <- (chr4[i+1,2] - chr4[i,2]) 
+recombinationchr4>1000000
+chr4[recombinationchr4>1000000,]
+#0
+chr4
+
+recombinationchr5 <- rep(0,(length(chr5[,2])-1))
+for (i in 1:(length(chr5[,2])-1)) recombinationchr5[i] <- (chr5[i+1,2] - chr5[i,2]) 
+recombinationchr5>1000000
+chr5[recombinationchr5>1000000,]
+#2, from the same LG
+chr5
+
+recombinationchr6 <- rep(0,(length(chr6[,2])-1))
+for (i in 1:(length(chr6[,2])-1)) recombinationchr6[i] <- (chr6[i+1,2] - chr6[i,2]) 
+recombinationchr6>1000000
+chr6[recombinationchr6>1000000,]
+#0
+chr6
+
+recombinationchr7 <- rep(0,(length(chr7[,2])-1))
+for (i in 1:(length(chr7[,2])-1)) recombinationchr7[i] <- (chr7[i+1,2] - chr7[i,2]) 
+recombinationchr7>1000000
+chr7[recombinationchr7>1000000,]
+#1 but from 2 linkage groups
+chr7
+
+recombinationchr8 <- rep(0,(length(chr8[,2])-1))
+for (i in 1:(length(chr8[,2])-1)) recombinationchr8[i] <- (chr8[i+1,2] - chr8[i,2]) 
+recombinationchr8>1000000
+chr8[recombinationchr8>1000000,]
+#1 but from 2 linkage groups
+chr8
+
+recombinationchr9 <- rep(0,(length(chr9[,2])-1))
+for (i in 1:(length(chr9[,2])-1)) recombinationchr9[i] <- (chr9[i+1,2] - chr9[i,2]) 
+recombinationchr9>1000000
+chr9[recombinationchr9>1000000,]
+#1 but from 2 linkage groups
+chr9
+
+recombinationchr10 <- rep(0,(length(chr10[,2])-1))
+for (i in 1:(length(chr10[,2])-1)) recombinationchr10[i] <- (chr10[i+1,2] - chr10[i,2]) 
+recombinationchr10>1000000
+chr10[recombinationchr10>1000000,]
+#1, from the same LG
+chr10
+
+recombinationchr11 <- rep(0,(length(chr11[,2])-1))
+for (i in 1:(length(chr11[,2])-1)) recombinationchr11[i] <- (chr11[i+1,2] - chr11[i,2]) 
+recombinationchr11>1000000
+chr11[recombinationchr11>1000000,]
+#1, from the same LG
+chr11
+
+recombinationchr12 <- rep(0,(length(chr12[,2])-1))
+for (i in 1:(length(chr12[,2])-1)) recombinationchr12[i] <- (chr12[i+1,2] - chr12[i,2]) 
+recombinationchr12>1000000
+chr12[recombinationchr12>1000000,]
+#2, from the same LG
+chr12
+
+recombinationchr13 <- rep(0,(length(chr13[,2])-1))
+for (i in 1:(length(chr13[,2])-1)) recombinationchr13[i] <- (chr13[i+1,2] - chr13[i,2]) 
+recombinationchr13>1000000
+chr13[recombinationchr13>1000000,]
+#0
+chr13
+
+recombinationchr14 <- rep(0,(length(chr14[,2])-1))
+for (i in 1:(length(chr14[,2])-1)) recombinationchr14[i] <- (chr14[i+1,2] - chr14[i,2]) 
+recombinationchr14>1000000
+chr14[recombinationchr14>1000000,]
+#1 but from 2 linkage groups
+chr14
+
+recombinationchr15 <- rep(0,(length(chr15[,2])-1))
+for (i in 1:(length(chr15[,2])-1)) recombinationchr15[i] <- (chr15[i+1,2] - chr15[i,2]) 
+recombinationchr15>1000000
+chr15[recombinationchr15>1000000,]
+#0
+chr15
+
+recombinationchr16 <- rep(0,(length(chr16[,2])-1))
+for (i in 1:(length(chr16[,2])-1)) recombinationchr16[i] <- (chr16[i+1,2] - chr16[i,2]) 
+recombinationchr16>1000000
+chr16[recombinationchr16>1000000,]
+#0
+chr16
+
+recombinationchr17 <- rep(0,(length(chr17[,2])-1))
+for (i in 1:(length(chr17[,2])-1)) recombinationchr17[i] <- (chr17[i+1,2] - chr17[i,2]) 
+recombinationchr17>1000000
+chr17[recombinationchr17>1000000,]
+#0
+chr17
+
+recombinationchr18 <- rep(0,(length(chr18[,2])-1))
+for (i in 1:(length(chr18[,2])-1)) recombinationchr18[i] <- (chr18[i+1,2] - chr18[i,2]) 
+recombinationchr18>1000000
+chr18[recombinationchr18>1000000,]
+#1, for the same LG
+chr18
+
+recombinationchr19 <- rep(0,(length(chr19[,2])-1))
+for (i in 1:(length(chr19[,2])-1)) recombinationchr19[i] <- (chr19[i+1,2] - chr19[i,2]) 
+recombinationchr19>1000000
+chr19[recombinationchr19>1000000,]
+#0
+chr19
+
+recombinationchr20 <- rep(0,(length(chr20[,2])-1))
+for (i in 1:(length(chr20[,2])-1)) recombinationchr20[i] <- (chr20[i+1,2] - chr20[i,2]) 
+recombinationchr20>1000000
+chr20[recombinationchr20>1000000,]
+#0
+chr20
+
+recombinationchr21 <- rep(0,(length(chr21[,2])-1))
+for (i in 1:(length(chr21[,2])-1)) recombinationchr21[i] <- (chr21[i+1,2] - chr21[i,2]) 
+recombinationchr21>1000000
+chr21[recombinationchr21>1000000,]
+#0
+chr21
+
+recombinationchr22 <- rep(0,(length(chr22[,2])-1))
+for (i in 1:(length(chr22[,2])-1)) recombinationchr22[i] <- (chr22[i+1,2] - chr22[i,2]) 
+recombinationchr22>1000000
+chr22[recombinationchr22>1000000,]
+#1, from the same LG
+chr22
+
+recombinationchr23 <- rep(0,(length(chr23[,2])-1))
+for (i in 1:(length(chr23[,2])-1)) recombinationchr23[i] <- (chr23[i+1,2] - chr23[i,2]) 
+recombinationchr23>1000000
+chr23[recombinationchr23>1000000,]
+#0
+chr23
+
+recombinationchr24 <- rep(0,(length(chr24[,2])-1))
+for (i in 1:(length(chr24[,2])-1)) recombinationchr24[i] <- (chr24[i+1,2] - chr24[i,2]) 
+recombinationchr24>1000000
+chr24[recombinationchr24>1000000,]
+#1 from the same LG
+chr24
+
+recombinationchr25 <- rep(0,(length(chr25[,2])-1))
+for (i in 1:(length(chr25[,2])-1)) recombinationchr25[i] <- (chr25[i+1,2] - chr25[i,2]) 
+recombinationchr25>1000000
+chr25[recombinationchr25>1000000,]
+#0
+chr25
+
+
+recombinationchr26 <- rep(0,(length(chr26[,2])-1))
+for (i in 1:(length(chr26[,2])-1)) recombinationchr26[i] <- (chr26[i+1,2] - chr26[i,2]) 
+recombinationchr26>1000000
+chr26[recombinationchr26>1000000,]
+#0
+chr26
+
+recombinationchr27 <- rep(0,(length(chr27[,2])-1))
+for (i in 1:(length(chr27[,2])-1)) recombinationchr27[i] <- (chr27[i+1,2] - chr27[i,2]) 
+recombinationchr27>1000000
+chr27[recombinationchr27>1000000,]
+#2, from the same LG
+chr27
+
+recombinationchr28 <- rep(0,(length(chr28[,2])-1))
+for (i in 1:(length(chr28[,2])-1)) recombinationchr28[i] <- (chr28[i+1,2] - chr28[i,2]) 
+recombinationchr28>1000000
+chr28[recombinationchr28>1000000,]
+#0
+chr28
+
+recombinationchr29 <- rep(0,(length(chr29[,2])-1))
+for (i in 1:(length(chr29[,2])-1)) recombinationchr29[i] <- (chr29[i+1,2] - chr29[i,2]) 
+recombinationchr29>1000000
+chr29[recombinationchr29>1000000,]
+#0
+chr29
+
+recombinationchr30 <- rep(0,(length(chr30[,2])-1))
+for (i in 1:(length(chr30[,2])-1)) recombinationchr30[i] <- (chr30[i+1,2] - chr30[i,2]) 
+recombinationchr30>1000000
+chr30[recombinationchr30>1000000,]
+#0
+chr30
+
+recombinationchr31 <- rep(0,(length(chr31[,2])-1))
+for (i in 1:(length(chr31[,2])-1)) recombinationchr31[i] <- (chr31[i+1,2] - chr31[i,2]) 
+recombinationchr31>1000000
+chr31[recombinationchr31>1000000,]
+#1, from the same LG
+chr31
+
+recombinationchr32 <- rep(0,(length(chr32[,2])-1))
+for (i in 1:(length(chr32[,2])-1)) recombinationchr32[i] <- (chr32[i+1,2] - chr32[i,2]) 
+recombinationchr32>1000000
+chr32[recombinationchr32>1000000,]
+#1, from the same LG
+chr32
+
+recombinationchr33 <- rep(0,(length(chr33[,2])-1))
+for (i in 1:(length(chr33[,2])-1)) recombinationchr33[i] <- (chr33[i+1,2] - chr33[i,2]) 
+recombinationchr33>1000000
+chr33[recombinationchr33>1000000,]
+#1, but from different LGs
+chr33
+
+```
+
+
 Now, let's check the results with the reads that align only once
 
 ```{r}
