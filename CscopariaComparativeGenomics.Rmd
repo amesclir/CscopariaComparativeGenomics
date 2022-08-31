@@ -10,7 +10,7 @@ editor_options:
 Opening some Carex scoparia data
 
 ```{r}
-
+library(RCircos)
 both <- read.csv("both.csv")
 
 both
@@ -699,13 +699,13 @@ Let's try to plot something that could be publish
 ```{r}
 
 library(RColorBrewer)
-n <- 30
+n <- 34
 qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
 col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
 pie(rep(1,n), col=sample(col_vector, n))
 
-col_vector[1:30]
-col_vector <- c(col_vector[1:30],rep(col_vector[30],1381))
+col_vector[1:34]
+col_vector <- c(col_vector[1:34],rep(col_vector[34],1381))
 
 length(col_vector)
 dim (both)
@@ -779,9 +779,12 @@ links[links[,1]=="chr26", "PlotColor"] <- col_vector[26]
 links[links[,1]=="chr27", "PlotColor"] <- col_vector[27]
 links[links[,1]=="chr28", "PlotColor"] <- col_vector[28]
 links[links[,1]=="chr29", "PlotColor"] <- col_vector[29]
+links[links[,1]=="chr30", "PlotColor"] <- col_vector[30]
+links[links[,1]=="chr31", "PlotColor"] <- col_vector[31]
+links[links[,1]=="chr32", "PlotColor"] <- col_vector[32]
+links[links[,1]=="chr33", "PlotColor"] <- col_vector[33]
 
 RCircos.Link.Plot(links, track.num = 1)
-
 
 
 ```
