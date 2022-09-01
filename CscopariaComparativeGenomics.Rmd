@@ -798,7 +798,7 @@ recombinationchr1 <- rep(0,(length(chr1[,2])-1))
 for (i in 1:(length(chr1[,2])-1)) recombinationchr1[i] <- (chr1[i+1,2] - chr1[i,2]) 
 recombinationchr1>1000000
 chr1[recombinationchr1>1000000,]
-#2, from the same LG
+#2, from the same LG, but there is an inversion in that area
 chr1
 
 recombinationchr2 <- rep(0,(length(chr2[,2])-1))
@@ -812,7 +812,7 @@ recombinationchr3 <- rep(0,(length(chr3[,2])-1))
 for (i in 1:(length(chr3[,2])-1)) recombinationchr3[i] <- (chr3[i+1,2] - chr3[i,2]) 
 recombinationchr3>1000000
 chr3[recombinationchr3>1000000,]
-#1, from the same LG
+#1, from the same LG, there is also at least an inversion in that chromosome
 chr3
 
 recombinationchr4 <- rep(0,(length(chr4[,2])-1))
@@ -826,7 +826,7 @@ recombinationchr5 <- rep(0,(length(chr5[,2])-1))
 for (i in 1:(length(chr5[,2])-1)) recombinationchr5[i] <- (chr5[i+1,2] - chr5[i,2]) 
 recombinationchr5>1000000
 chr5[recombinationchr5>1000000,]
-#2, from the same LG
+#2, from the same LG, but there is also an inversion in this chromosome
 chr5
 
 recombinationchr6 <- rep(0,(length(chr6[,2])-1))
@@ -861,21 +861,21 @@ recombinationchr10 <- rep(0,(length(chr10[,2])-1))
 for (i in 1:(length(chr10[,2])-1)) recombinationchr10[i] <- (chr10[i+1,2] - chr10[i,2]) 
 recombinationchr10>1000000
 chr10[recombinationchr10>1000000,]
-#1, from the same LG
+#1, from the same LG and no inversions
 chr10
 
 recombinationchr11 <- rep(0,(length(chr11[,2])-1))
 for (i in 1:(length(chr11[,2])-1)) recombinationchr11[i] <- (chr11[i+1,2] - chr11[i,2]) 
 recombinationchr11>1000000
 chr11[recombinationchr11>1000000,]
-#1, from the same LG
+#1, from the same LG, no inversions (a chunks also in the LG side)
 chr11
 
 recombinationchr12 <- rep(0,(length(chr12[,2])-1))
 for (i in 1:(length(chr12[,2])-1)) recombinationchr12[i] <- (chr12[i+1,2] - chr12[i,2]) 
 recombinationchr12>1000000
 chr12[recombinationchr12>1000000,]
-#2, from the same LG
+#2, from the same LG, no inversions
 chr12
 
 recombinationchr13 <- rep(0,(length(chr13[,2])-1))
@@ -945,7 +945,7 @@ recombinationchr22 <- rep(0,(length(chr22[,2])-1))
 for (i in 1:(length(chr22[,2])-1)) recombinationchr22[i] <- (chr22[i+1,2] - chr22[i,2]) 
 recombinationchr22>1000000
 chr22[recombinationchr22>1000000,]
-#1, from the same LG
+#1, from the same LG, no inversions (a chunks also in the LG side)
 chr22
 
 recombinationchr23 <- rep(0,(length(chr23[,2])-1))
@@ -959,7 +959,7 @@ recombinationchr24 <- rep(0,(length(chr24[,2])-1))
 for (i in 1:(length(chr24[,2])-1)) recombinationchr24[i] <- (chr24[i+1,2] - chr24[i,2]) 
 recombinationchr24>1000000
 chr24[recombinationchr24>1000000,]
-#1 from the same LG
+#1 from the same LG, no inversions (a chunks also in the LG side)
 chr24
 
 recombinationchr25 <- rep(0,(length(chr25[,2])-1))
@@ -981,7 +981,7 @@ recombinationchr27 <- rep(0,(length(chr27[,2])-1))
 for (i in 1:(length(chr27[,2])-1)) recombinationchr27[i] <- (chr27[i+1,2] - chr27[i,2]) 
 recombinationchr27>1000000
 chr27[recombinationchr27>1000000,]
-#2, from the same LG
+#2, from the same LG, , no inversions (a chunk also in the LG side)
 chr27
 
 recombinationchr28 <- rep(0,(length(chr28[,2])-1))
@@ -1009,14 +1009,14 @@ recombinationchr31 <- rep(0,(length(chr31[,2])-1))
 for (i in 1:(length(chr31[,2])-1)) recombinationchr31[i] <- (chr31[i+1,2] - chr31[i,2]) 
 recombinationchr31>1000000
 chr31[recombinationchr31>1000000,]
-#1, from the same LG
+#1, from the same LG, no inversions (a chunks also in the LG side)
 chr31
 
 recombinationchr32 <- rep(0,(length(chr32[,2])-1))
 for (i in 1:(length(chr32[,2])-1)) recombinationchr32[i] <- (chr32[i+1,2] - chr32[i,2]) 
 recombinationchr32>1000000
 chr32[recombinationchr32>1000000,]
-#1, from the same LG
+#1, from the same LG, no inversions (a chunk also in the LG side)
 chr32
 
 recombinationchr33 <- rep(0,(length(chr33[,2])-1))
