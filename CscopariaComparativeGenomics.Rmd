@@ -1469,22 +1469,12 @@ Note: This is not included in the paper.
 
 source("fisfusmodeling.R") 
 
-genome = cbind(c("LG1", "LG1","LG1", "LG1", "LG1", "LG2", "LG2", "LG2", "LG2", "LG2", "LG3", "LG3", "LG3", "LG3", "LG3"),c(0,1000000, 3000000, 9000000, 10000000, 0,1000000, 3000000, 9000000, 10000000, 0,1000000, 3000000, 9000000, 10000000), c(1,1000001, 3000001, 9000001, 10000001, 1,1000001, 3000001, 9000001, 10000001, 0,1000001, 3000001, 9000001, 10000001), c(NA, "M1","M2","M3",NA,NA,"M4","M5","M6",NA,NA,"M7","M8","M9",NA ))
-colnames(genome) <- c("Chromosome","chromStart","chromEnd","Marker")
-genome <- as.data.frame(genome)
-genome
 
-rearrangements = 10
-pfis = 0.5
-fisfusmodelling(genome, rearrangements,pfis)
+# Carex scoparia and Carex scoparia LG got separated ca. 0.3 mya maximum 
+# number of rearrangements are ca. 15 events per million year x 0.6 my (0.3 + 0.3 million years)
+# pfis = 0.5
 
-# Carex scoparia and Carex littledalei got separated ca. 23 mya 
-# rate of fission based on ChromoSSE 3.4 fissions per million year and 5 fussion per million year in anagenetic
-# rate of fission based on ChromoSSE 0.6 fissions per million year and 0.4 fussion per million year in anagenetic
-# number of rearrangements are ca. 9.5 events per million year x 46 my (23 + 23 million years)
-# pfis = 4/9.4
-
-rearrangements = 435
+rearrangements = 9
 pfis = 0.5
 
 genome <- rbind(
@@ -1574,235 +1564,25 @@ bowtie2[bowtie2[,1]=="chr28",][order(bowtie2[bowtie2[,1]=="chr28",2]),],
 c(both[28,1],both[28,3]-1,both[28,3],NA),
 c("chr29",0,1,NA),  
 bowtie2[bowtie2[,1]=="chr29",][order(bowtie2[bowtie2[,1]=="chr29",2]),], 
-c(both[29,1],both[29,3]-1,both[29,3],NA)
+c(both[29,1],both[29,3]-1,both[29,3],NA),
+c("chr30",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr30",][order(bowtie2[bowtie2[,1]=="chr30",2]),], 
+c(both[30,1],both[30,3]-1,both[30,3],NA),
+c("chr31",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr31",][order(bowtie2[bowtie2[,1]=="chr31",2]),], 
+c(both[31,1],both[31,3]-1,both[31,3],NA),
+c("chr32",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr32",][order(bowtie2[bowtie2[,1]=="chr32",2]),], 
+c(both[32,1],both[32,3]-1,both[32,3],NA),
+c("chr33",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr33",][order(bowtie2[bowtie2[,1]=="chr33",2]),], 
+c(both[33,1],both[33,3]-1,both[33,3],NA)
 )
 
 littledaleimodel <- fisfusmodelling(genome, rearrangements,pfis)
 
-littledaleimodel436 <- littledaleimodel[[436]]
-
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[1],1] <- "LG1"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[2],1] <- "LG2"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[3],1] <- "LG3"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[4],1] <- "LG4"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[5],1] <- "LG5"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[6],1] <- "LG6"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[7],1] <- "LG7"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[8],1] <- "LG8"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[9],1] <- "LG9"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[10],1] <- "LG10"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[11],1] <- "LG11"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[12],1] <- "LG12"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[13],1] <- "LG13"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[14],1] <- "LG14"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[15],1] <- "LG15"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[16],1] <- "LG16"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[17],1] <- "LG17"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[18],1] <- "LG18"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[19],1] <- "LG19"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[20],1] <- "LG20"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[21],1] <- "LG21"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[22],1] <- "LG22"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[23],1] <- "LG23"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[24],1] <- "LG24"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[25],1] <- "LG25"
-littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[26],1] <- "LG26"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[27],1] <- "LG27"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[28],1] <- "LG28"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[29],1] <- "LG29"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[30],1] <- "LG30"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[31],1] <- "LG31"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[32],1] <- "LG32"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[33],1] <- "LG33"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[34],1] <- "LG34"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[35],1] <- "LG35"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[36],1] <- "LG36"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[37],1] <- "LG37"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[38],1] <- "LG38"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[39],1] <- "LG39"
-#littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[40],1] <- "LG40"
 
 
-
-both[1:29,]
-maximum <- vector()
-for (i in 1:length(unique(littledaleimodel436[,1])))
-maximum[i] <- max(littledaleimodel436[littledaleimodel436[,1] == unique(littledaleimodel436[,1])[i],3])  
-littledaleimodel436genome <- cbind(unique(littledaleimodel436[,1]),0,maximum,NA,NA)
-colnames(littledaleimodel436genome) <- colnames(both[1:5])
-genomesim <- rbind(both[1:29,1:5],littledaleimodel436genome) 
-
-genomesim <- as.data.frame(genomesim)
-
-library(RCircos)
-chr.exclude <- NULL
-cyto.info <- genomesim
-tracks.inside <- 0
-tracks.outside <- 0
-RCircos.Set.Core.Components(cyto.info, chr.exclude,tracks.inside, tracks.outside)
-
-
-rcircos.params <- RCircos.Get.Plot.Parameters()
-rcircos.cyto <- RCircos.Get.Plot.Ideogram()
-rcircos.position <- RCircos.Get.Plot.Positions()
-RCircos.List.Plot.Parameters()
-
- 
-
-
-RCircos.Set.Plot.Area()
-RCircos.Chromosome.Ideogram.Plot()
-
-genome <- genome[complete.cases(genome),]
-littledaleimodel436 <- littledaleimodel436[complete.cases(littledaleimodel436),]
-
-linkssim <- merge(genome, littledaleimodel436, by = "Marker", sort = F, no.dups = TRUE)
-length(genome[,4])
-length(unique(genome[,4]))
-dim(linkssim)
-linkssim <- unique(linkssim)
-linkssim <- linkssim[,c(2,3,4,5,6,7)]
-linkssim
-linkssim <- as.data.frame(linkssim)
-RCircos.Link.Plot(linkssim,track.num=1,TRUE)
-#There is an error here. Maybe consider to use other package
-
-chr1dsim <- linkssim[linkssim$Chromosome.x=="chr1",]
-chr1dsim
-chr2dsim <- linkssim[linkssim$Chromosome.x=="chr2",]
-chr2dsim
-chr3dsim <- linkssim[linkssim$Chromosome.x=="chr3",]
-chr3dsim
-chr4dsim <- linkssim[linkssim$Chromosome.x=="chr4",]
-chr4dsim
-chr5dsim <- linkssim[linkssim$Chromosome.x=="chr5",]
-chr5dsim
-chr6dsim <- linkssim[linkssim$Chromosome.x=="chr6",]
-chr6dsim
-chr7dsim <- linkssim[linkssim$Chromosome.x=="chr7",]
-chr7dsim
-chr8dsim <- linkssim[linkssim$Chromosome.x=="chr8",]
-chr8dsim
-chr9dsim <- linkssim[linkssim$Chromosome.x=="chr9",]
-chr9dsim
-chr10dsim <- linkssim[linkssim$Chromosome.x=="chr10",]
-chr10dsim
-chr11dsim <- linkssim[linkssim$Chromosome.x=="chr11",]
-chr11dsim
-chr12dsim <- linkssim[linkssim$Chromosome.x=="chr12",]
-chr12dsim
-chr13dsim <- linkssim[linkssim$Chromosome.x=="chr13",]
-chr13dsim
-chr14dsim <- linkssim[linkssim$Chromosome.x=="chr14",]
-chr14dsim
-chr15dsim <- linkssim[linkssim$Chromosome.x=="chr15",]
-chr15dsim
-chr16dsim <- linkssim[linkssim$Chromosome.x=="chr16",]
-chr16dsim
-chr17dsim <- linkssim[linkssim$Chromosome.x=="chr17",]
-chr17dsim
-chr18dsim <- linkssim[linkssim$Chromosome.x=="chr18",]
-chr18dsim
-chr19dsim <- linkssim[linkssim$Chromosome.x=="chr19",]
-chr19dsim
-chr20dsim <- linkssim[linkssim$Chromosome.x=="chr20",]
-chr20dsim
-chr21dsim <- linkssim[linkssim$Chromosome.x=="chr21",]
-chr21dsim
-chr22dsim <- linkssim[linkssim$Chromosome.x=="chr22",]
-chr22dsim
-chr23dsim <- linkssim[linkssim$Chromosome.x=="chr23",]
-chr23dsim
-chr24dsim <- linkssim[linkssim$Chromosome.x=="chr24",]
-chr24dsim
-chr25dsim <- linkssim[linkssim$Chromosome.x=="chr25",]
-chr25dsim
-chr26dsim <- linkssim[linkssim$Chromosome.x=="chr26",]
-chr26dsim
-chr27dsim <- linkssim[linkssim$Chromosome.x=="chr27",]
-chr27dsim
-chr28dsim <- linkssim[linkssim$Chromosome.x=="chr28",]
-chr28dsim
-chr29dsim <- linkssim[linkssim$Chromosome.x=="chr29",]
-chr29dsim
-
-source("genomeblocks.R")
-outblock1dsim <- genomeblocks(chr1dsim)
-outblock1dsim
-outblock2dsim <- genomeblocks(chr2dsim)
-outblock2dsim
-outblock3dsim <- genomeblocks(chr3dsim)
-outblock3dsim
-outblock4dsim <- genomeblocks(chr4dsim)
-outblock4dsim
-outblock5dsim <- genomeblocks(chr5dsim)
-outblock5dsim
-outblock6dsim <- genomeblocks(chr6dsim)
-outblock6dsim
-outblock7dsim <- genomeblocks(chr7dsim)
-outblock7dsim
-outblock8dsim <- genomeblocks(chr8dsim)
-outblock8dsim
-outblock9dsim <- genomeblocks(chr9dsim)
-outblock9dsim
-outblock10dsim <- genomeblocks(chr10dsim)
-outblock10dsim
-outblock11dsim <- genomeblocks(chr11dsim)
-outblock11dsim
-outblock12dsim <- genomeblocks(chr12dsim)
-outblock12dsim
-outblock13dsim <- genomeblocks(chr13dsim)
-outblock13dsim
-outblock14dsim <- genomeblocks(chr14dsim)
-outblock14dsim
-outblock15dsim <- genomeblocks(chr15dsim)
-outblock15dsim
-outblock16dsim <- genomeblocks(chr16dsim)
-outblock16dsim
-outblock17dsim <- genomeblocks(chr17dsim)
-outblock17dsim
-outblock18dsim <- genomeblocks(chr18dsim)
-outblock18dsim
-outblock19dsim <- genomeblocks(chr19dsim)
-outblock19dsim
-outblock20dsim <- genomeblocks(chr20dsim)
-outblock20dsim
-outblock21dsim <- genomeblocks(chr21dsim)
-outblock21dsim
-outblock22dsim <- genomeblocks(chr22dsim)
-outblock22dsim
-outblock23dsim <- genomeblocks(chr23dsim)
-outblock23dsim
-outblock24dsim <- genomeblocks(chr24dsim)
-outblock24dsim
-outblock25dsim <- genomeblocks(chr25dsim)
-outblock25dsim
-outblock26dsim <- genomeblocks(chr26dsim)
-outblock26dsim
-outblock27dsim <- genomeblocks(chr27dsim)
-outblock27dsim
-outblock28dsim <- genomeblocks(chr28dsim)
-outblock28dsim
-outblock29dsim <- genomeblocks(chr29dsim)
-outblock29dsim
-
-outblockdsim <- rbind(outblock1dsim,outblock2dsim,outblock3dsim,outblock4dsim,outblock5dsim,outblock6dsim,outblock7dsim,outblock8dsim,outblock9dsim,outblock10dsim,outblock11dsim,outblock12dsim,outblock13dsim,outblock14dsim,outblock15dsim,outblock16dsim,outblock17dsim,outblock18dsim,outblock19dsim,outblock20dsim,outblock21dsim,outblock22dsim,outblock23dsim,outblock24dsim,outblock25dsim,outblock26dsim,outblock27dsim,outblock28dsim,outblock29dsim)
-
-
-dim(outblockdsim[outblockdsim[,4]=="conserved",])
-dim(outblockdsim[outblockdsim[,4]=="singlemarker",])
-dim(outblockdsim[outblockdsim[,4]=="fisfus",])
-sum(as.numeric(outblockdsim[outblockdsim[,4]=="conserved",3]) - as.numeric(outblockdsim[outblockdsim[,4]=="conserved",2]))
-mean(as.numeric(outblockdsim[outblockdsim[,4]=="conserved",3]) - as.numeric(outblockdsim[outblockdsim[,4]=="conserved",2]))
-
-#Datos reales
-outblockd <- rbind(outblock1d,outblock2d,outblock3d,outblock4d,outblock5d,outblock6d,outblock7d,outblock8d,outblock9d,outblock10d,outblock11d,outblock12d,outblock13d,outblock14d,outblock15d,outblock16d,outblock17d,outblock18d,outblock19d,outblock20d,outblock21d,outblock22d,outblock23d,outblock24d,outblock25d,outblock26d,outblock27d,outblock28d,outblock29d)
-
-dim(outblockd[outblockd[,4]=="conserved",])
-dim(outblockd[outblockd[,4]=="singlemarker",])
-dim(outblockd[outblockd[,4]=="fisfus",])
-sum(as.numeric(outblockd[outblockd[,4]=="conserved",3]) - as.numeric(outblockd[outblockd[,4]=="conserved",2]))
-mean(as.numeric(outblockd[outblockd[,4]=="conserved",3]) - as.numeric(outblockd[outblockd[,4]=="conserved",2]))
 
 
 ```
@@ -1811,18 +1591,8 @@ Now with permutations
 This is included in the paper
 ```{r}
 source("fisfusmodelingperm.R")
-# Carex scoparia and Carex littledalei got separated ca. 23 mya 
-#Cladogenetic
-#Fission: mean = 0.567, 95% CI = 0.232 - 0.892
-#Fusion: mean = 0.475, 95% CI = 0.17 - 0.81
-#
-#Anagenetic
-#Fission: mean = 6.381, 95% CI = 5.144 - 7.597
-#Fusion: mean = 6.66, 95% CI = 5.627 - 7.75
-# number of rearrangements are ca. 14 events per million year x 46 my (23 + 23 million years)
-# pfis = 6.948/14.083
 
-rearrangements = 644
+rearrangements = 9
 pfis = 0.5
 perm = 99
 #make sure the genome object is right
@@ -1833,13 +1603,7 @@ littledaleimodelperm <- fisfusmodellingperm(genome, rearrangements,pfis,perm)
 #littledaleimodelpermcopy <- littledaleimodelperm
 
 littledaleimodelperm[[1]]
-littledaleimodelperm[[1000]]
-
-for (i in 1:perm) { 
-for (j in 1:length(unique(littledaleimodelperm[[i+1]][,1])))  
-littledaleimodelperm[[i+1]][littledaleimodelperm[[i+1]][,1] == unique(littledaleimodelperm[[i+1]][,1])[j],1] <- paste("LG",j, sep="")
-}
-
+littledaleimodelperm[[100]]
 littledaleimodelperm[[2]]
 
 #IMPORTANT, MAKE SURE YOU RESTORE THE ORIGINAL GENOME!
@@ -1868,7 +1632,6 @@ chr1dsimperm <- list()
 for (i in 1:perm)
 chr1dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr1",]
 chr1dsimperm[[2]]
-
 chr2dsimperm <- list()
 for (i in 1:perm)
 chr2dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr2",]
@@ -1953,6 +1716,18 @@ chr28dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr28",]
 chr29dsimperm <- list()
 for (i in 1:perm)
 chr29dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr29",]
+chr30dsimperm <- list()
+for (i in 1:perm)
+chr30dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr30",]
+chr31dsimperm <- list()
+for (i in 1:perm)
+chr31dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr31",]
+chr32dsimperm <- list()
+for (i in 1:perm)
+chr32dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr32",]
+chr33dsimperm <- list()
+for (i in 1:perm)
+chr33dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr33",]
 
 source("genomeblocks.R")
 outblock1dsimperm <- list()
@@ -2042,11 +1817,23 @@ outblock28dsimperm[[i]] <- genomeblocks(chr28dsimperm[[i]])
 outblock29dsimperm <- list()
 for (i in 1:perm)
 outblock29dsimperm[[i]] <- genomeblocks(chr29dsimperm[[i]])
+outblock30dsimperm <- list()
+for (i in 1:perm)
+outblock30dsimperm[[i]] <- genomeblocks(chr30dsimperm[[i]])
+outblock31dsimperm <- list()
+for (i in 1:perm)
+outblock31dsimperm[[i]] <- genomeblocks(chr31dsimperm[[i]])
+outblock32dsimperm <- list()
+for (i in 1:perm)
+outblock32dsimperm[[i]] <- genomeblocks(chr32dsimperm[[i]])
+outblock33dsimperm <- list()
+for (i in 1:perm)
+outblock33dsimperm[[i]] <- genomeblocks(chr33dsimperm[[i]])
 
 
 outblockdsimperm <- list()
 for (i in 1:perm)
-outblockdsimperm[[i]] <- rbind(outblock1dsimperm[[i]],outblock2dsimperm[[i]],outblock3dsimperm[[i]],outblock4dsimperm[[i]],outblock5dsimperm[[i]],outblock6dsimperm[[i]],outblock7dsimperm[[i]],outblock8dsimperm[[i]],outblock9dsimperm[[i]],outblock10dsimperm[[i]],outblock11dsimperm[[i]],outblock12dsimperm[[i]],outblock13dsimperm[[i]],outblock14dsimperm[[i]],outblock15dsimperm[[i]],outblock16dsimperm[[i]],outblock17dsimperm[[i]],outblock18dsimperm[[i]],outblock19dsimperm[[i]],outblock20dsimperm[[i]],outblock21dsimperm[[i]],outblock22dsimperm[[i]],outblock23dsimperm[[i]],outblock24dsimperm[[i]],outblock25dsimperm[[i]],outblock26dsimperm[[i]],outblock27dsimperm[[i]],outblock28dsimperm[[i]],outblock29dsimperm[[i]])
+outblockdsimperm[[i]] <- rbind(outblock1dsimperm[[i]],outblock2dsimperm[[i]],outblock3dsimperm[[i]],outblock4dsimperm[[i]],outblock5dsimperm[[i]],outblock6dsimperm[[i]],outblock7dsimperm[[i]],outblock8dsimperm[[i]],outblock9dsimperm[[i]],outblock10dsimperm[[i]],outblock11dsimperm[[i]],outblock12dsimperm[[i]],outblock13dsimperm[[i]],outblock14dsimperm[[i]],outblock15dsimperm[[i]],outblock16dsimperm[[i]],outblock17dsimperm[[i]],outblock18dsimperm[[i]],outblock19dsimperm[[i]],outblock20dsimperm[[i]],outblock21dsimperm[[i]],outblock22dsimperm[[i]],outblock23dsimperm[[i]],outblock24dsimperm[[i]],outblock25dsimperm[[i]],outblock26dsimperm[[i]],outblock27dsimperm[[i]],outblock28dsimperm[[i]],outblock29dsimperm[[i]],outblock30dsimperm[[i]],outblock31dsimperm[[i]],outblock32dsimperm[[i]],outblock33dsimperm[[i]])
 
 numberofconserved <- vector()
 for (i in 1:perm)
@@ -2070,23 +1857,18 @@ meanconserved[i] <- mean(as.numeric(outblockdsimperm[[i]][outblockdsimperm[[i]][
 meanconserved
 
 #Datos reales
-genomeblocksBCR3_alld
+genomeblocksBCRall
 
-dim(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",])[1]
-dim(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="singlemarker",])[1]
-dim(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="fisfus",])[1]
+dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="conserved",])[1]
+dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="singlemarker",])[1]
+dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="fisfus",])[1]
 
 #make some histograms!!!!
 hist(numberoffisfus, main = "number of rearrangements")
-abline(v=dim(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="fisfus",])[1])
+abline(v=dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="fisfus",])[1])
 
 sort(numberoffisfus)
 
-sort(as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,3]) - as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,2]))
-mean(as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,3]) - as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,2]))
-sd(as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,3]) - as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,2]))
-
-hist(as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,3]) - as.numeric(genomeblocksBCR3_alld[genomeblocksBCR3_alld[,4]=="conserved",][,2]))
 
 ```
 
