@@ -1,0 +1,3037 @@
+---
+title: "CscopariaComparativeGenomics"
+author: "Marcial Escudero"
+date: "8/30/2022"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+Opening some Carex scoparia data
+
+```{r}
+library(RCircos)
+both <- read.csv("both.csv")
+
+both
+
+chr.exclude <- NULL
+cyto.info <- both
+tracks.inside <- 0
+tracks.outside <- 0
+RCircos.Set.Core.Components(cyto.info, chr.exclude,tracks.inside, tracks.outside)
+
+
+rcircos.params <- RCircos.Get.Plot.Parameters()
+rcircos.cyto <- RCircos.Get.Plot.Ideogram()
+rcircos.position <- RCircos.Get.Plot.Positions()
+RCircos.List.Plot.Parameters()
+
+ 
+
+rcircos.params <- RCircos.Get.Plot.Parameters()
+rcircos.params$base.per.unit <- 3000
+RCircos.Reset.Plot.Parameters(rcircos.params)
+RCircos.List.Plot.Parameters()
+
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+
+
+
+```
+
+Setting up the bowtie2 analysis
+
+```{r}
+
+readsdata <- read.csv("batch_3.catalog.tags.tsv", sep = "")
+
+readsdata[,3] <- paste0("M", readsdata[,3])
+
+readsdata <- readsdata[,c(3,9)]
+
+readsdata2 <- readsdata[readsdata[,1]%in%both[,4],]
+
+write.csv(readsdata2, file = "reads.csv")
+
+
+
+```
+
+
+Making the comparative genomics analyses
+```{r}
+
+bowtie2 <- read.csv("bowtie2.csv", sep = ",")
+bowtie2
+
+both
+
+links <- merge(bowtie2, both, by.x = "Marker", by.y = "Band", sort = F)
+links <- links[,c(2,3,4,5,6,7)]
+links
+
+track.num <- 1
+RCircos.Link.Plot(links, track.num, TRUE)
+
+out.file <- "ComparativeGenomicsLG1.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG1",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG2.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG2",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG3.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG3",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG4.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG4",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG5.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG5",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG6.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG6",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG7.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG7",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG8.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG8",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG9.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG9",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG10.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG10",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG11.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG11",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG12.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG12",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG13.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG13",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG14.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG14",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG15.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG15",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG16.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG16",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG17.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG17",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG18.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG18",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG19.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG19",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG20.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG20",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG21.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG21",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG22.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG22",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG23.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG23",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG24.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG24",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG25.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG25",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG26.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG26",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG27.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG27",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG28.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG28",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG29.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG29",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG30.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG30",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG31.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG31",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicsLG32.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,4]=="LG32",], track.num, TRUE)
+dev.off()
+
+
+
+
+out.file <- "ComparativeGenomicschr1.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr1",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr2.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr2",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr3.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr3",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr4.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr4",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr5.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr5",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr6.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr6",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr7.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr7",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr8.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr8",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr9.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr9",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr10.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr10",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr11.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr11",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr12.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr12",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr13.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr13",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr14.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr14",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr15.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr15",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr16.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr16",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr17.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr17",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr18.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr18",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr19.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr19",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr20.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr20",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr21.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr21",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr22.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr22",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr23.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr23",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr24.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr24",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr25.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr25",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr26.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr26",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr27.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr27",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr28.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr28",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr29.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr29",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr29.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr29",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr30.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr30",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr31.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr31",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr32.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr32",], track.num, TRUE)
+dev.off()
+
+out.file <- "ComparativeGenomicschr33.pdf"
+pdf(file=out.file, height=8, width=8, compress=TRUE)
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+RCircos.Link.Plot(links[links[,1]=="chr33",], track.num, TRUE)
+dev.off()
+
+```
+
+
+Defining the Carex scoparia chromosomes
+
+```{r}
+chr1 <- links[links$Chromosome.x=="chr1",]
+chr1 <- chr1[order(chr1$chromStart),]
+chr1
+
+chr2 <- links[links$Chromosome.x=="chr2",]
+chr2 <- chr2[order(chr2$chromStart),]
+chr2
+
+chr3 <- links[links$Chromosome.x=="chr3",]
+chr3 <- chr3[order(chr3$chromStart),]
+chr3
+
+chr4 <- links[links$Chromosome.x=="chr4",]
+chr4 <- chr4[order(chr4$chromStart),]
+chr4
+
+chr5 <- links[links$Chromosome.x=="chr5",]
+chr5 <- chr5[order(chr5$chromStart),]
+chr5
+
+chr6 <- links[links$Chromosome.x=="chr6",]
+chr6 <- chr6[order(chr6$chromStart),]
+chr6
+
+chr7 <- links[links$Chromosome.x=="chr7",]
+chr7 <- chr7[order(chr7$chromStart),]
+chr7
+
+chr8 <- links[links$Chromosome.x=="chr8",]
+chr8 <- chr8[order(chr8$chromStart),]
+chr8
+
+chr9 <- links[links$Chromosome.x=="chr9",]
+chr9 <- chr9[order(chr9$chromStart),]
+chr9
+
+chr10 <- links[links$Chromosome.x=="chr10",]
+chr10 <- chr10[order(chr10$chromStart),]
+chr10
+
+chr11 <- links[links$Chromosome.x=="chr11",]
+chr11 <- chr11[order(chr11$chromStart),]
+chr11
+
+chr12 <- links[links$Chromosome.x=="chr12",]
+chr12 <- chr12[order(chr12$chromStart),]
+chr12
+
+chr13 <- links[links$Chromosome.x=="chr13",]
+chr13 <- chr13[order(chr13$chromStart),]
+chr13
+
+chr14 <- links[links$Chromosome.x=="chr14",]
+chr14 <- chr14[order(chr14$chromStart),]
+chr14
+
+chr15 <- links[links$Chromosome.x=="chr15",]
+chr15 <- chr15[order(chr15$chromStart),]
+chr15
+
+chr16 <- links[links$Chromosome.x=="chr16",]
+chr16 <- chr16[order(chr16$chromStart),]
+chr16
+
+chr17 <- links[links$Chromosome.x=="chr17",]
+chr17 <- chr17[order(chr17$chromStart),]
+chr17
+
+chr18 <- links[links$Chromosome.x=="chr18",]
+chr18 <- chr18[order(chr18$chromStart),]
+chr18
+
+chr19 <- links[links$Chromosome.x=="chr19",]
+chr19 <- chr19[order(chr19$chromStart),]
+chr19
+
+chr20 <- links[links$Chromosome.x=="chr20",]
+chr20 <- chr20[order(chr20$chromStart),]
+chr20
+
+chr21 <- links[links$Chromosome.x=="chr21",]
+chr21 <- chr21[order(chr21$chromStart),]
+chr21
+
+chr22 <- links[links$Chromosome.x=="chr22",]
+chr22 <- chr22[order(chr22$chromStart),]
+chr22
+
+chr23 <- links[links$Chromosome.x=="chr23",]
+chr23 <- chr23[order(chr23$chromStart),]
+chr23
+
+chr24 <- links[links$Chromosome.x=="chr24",]
+chr24 <- chr24[order(chr24$chromStart),]
+chr24
+
+chr25 <- links[links$Chromosome.x=="chr25",]
+chr25 <- chr25[order(chr25$chromStart),]
+chr25
+
+chr26 <- links[links$Chromosome.x=="chr26",]
+chr26 <- chr26[order(chr26$chromStart),]
+chr26
+
+chr27 <- links[links$Chromosome.x=="chr27",]
+chr27 <- chr27[order(chr27$chromStart),]
+chr27
+
+chr28 <- links[links$Chromosome.x=="chr28",]
+chr28 <- chr28[order(chr28$chromStart),]
+chr28
+
+chr29 <- links[links$Chromosome.x=="chr29",]
+chr29 <- chr29[order(chr29$chromStart),]
+chr29
+
+chr30 <- links[links$Chromosome.x=="chr30",]
+chr30 <- chr30[order(chr30$chromStart),]
+chr30
+
+chr31 <- links[links$Chromosome.x=="chr31",]
+chr31 <- chr31[order(chr31$chromStart),]
+chr31
+
+chr32 <- links[links$Chromosome.x=="chr32",]
+chr32 <- chr32[order(chr32$chromStart),]
+chr32
+
+chr33 <- links[links$Chromosome.x=="chr33",]
+chr33 <- chr33[order(chr33$chromStart),]
+chr33
+
+
+LG1 <- links[links$Chromosome.y=="LG1",]
+LG1 <- LG1[order(LG1$ChromStart),]
+LG1
+
+LG2 <- links[links$Chromosome.y=="LG2",]
+LG2 <- LG2[order(LG2$ChromStart),]
+LG2
+
+
+
+```
+
+
+
+
+Let's try to plot something that could be publish
+
+```{r}
+
+library(RColorBrewer)
+n <- 34
+qual_col_pals = brewer.pal.info[brewer.pal.info$category == 'qual',]
+col_vector = unlist(mapply(brewer.pal, qual_col_pals$maxcolors, rownames(qual_col_pals)))
+pie(rep(1,n), col=sample(col_vector, n))
+
+col_vector[1:34]
+col_vector <- c(col_vector[1:34],rep(col_vector[34],1381))
+
+length(col_vector)
+dim (both)
+
+library(RCircos)
+both <- read.csv("both.csv")
+
+RCircos.Get.Plot.Colors(both, col_vector)
+
+both$PlotColor <- col_vector
+
+chr.exclude <- NULL
+cyto.info <- both
+tracks.inside <- 0
+tracks.outside <- 0
+RCircos.Set.Core.Components(cyto.info, chr.exclude,tracks.inside, tracks.outside)
+
+
+rcircos.params <- RCircos.Get.Plot.Parameters()
+rcircos.params
+rcircos.cyto <- RCircos.Get.Plot.Ideogram()
+rcircos.cyto
+rcircos.position <- RCircos.Get.Plot.Positions()
+rcircos.position
+RCircos.List.Plot.Parameters()
+
+#rcircos.params <- RCircos.Get.Plot.Parameters()
+#rcircos.params$base.per.unit <- 3000
+#RCircos.Reset.Plot.Parameters(rcircos.params)
+#RCircos.List.Plot.Parameters()
+
+
+rcircos.cyto
+rcircos.cyto$BandColor <- rcircos.cyto$PlotColor
+rcircos.cyto$ChrColor <-  rcircos.cyto$PlotColor
+RCircos.Reset.Plot.Ideogram(rcircos.cyto)
+RCircos.List.Plot.Parameters()
+
+
+RCircos.Set.Plot.Area()
+RCircos.Chromosome.Ideogram.Plot()
+
+
+links$PlotColor <- 1
+links[links[,1]=="chr1", "PlotColor"] <- col_vector[1]
+links[links[,1]=="chr2", "PlotColor"] <- col_vector[2]
+links[links[,1]=="chr3", "PlotColor"] <- col_vector[3]
+links[links[,1]=="chr4", "PlotColor"] <- col_vector[4]
+links[links[,1]=="chr5", "PlotColor"] <- col_vector[5]
+links[links[,1]=="chr6", "PlotColor"] <- col_vector[6]
+links[links[,1]=="chr7", "PlotColor"] <- col_vector[7]
+links[links[,1]=="chr8", "PlotColor"] <- col_vector[8]
+links[links[,1]=="chr9", "PlotColor"] <- col_vector[9]
+links[links[,1]=="chr10", "PlotColor"] <- col_vector[10]
+links[links[,1]=="chr11", "PlotColor"] <- col_vector[11]
+links[links[,1]=="chr12", "PlotColor"] <- col_vector[12]
+links[links[,1]=="chr13", "PlotColor"] <- col_vector[13]
+links[links[,1]=="chr14", "PlotColor"] <- col_vector[14]
+links[links[,1]=="chr15", "PlotColor"] <- col_vector[15]
+links[links[,1]=="chr16", "PlotColor"] <- col_vector[16]
+links[links[,1]=="chr17", "PlotColor"] <- col_vector[17]
+links[links[,1]=="chr18", "PlotColor"] <- col_vector[18]
+links[links[,1]=="chr19", "PlotColor"] <- col_vector[19]
+links[links[,1]=="chr20", "PlotColor"] <- col_vector[20]
+links[links[,1]=="chr21", "PlotColor"] <- col_vector[21]
+links[links[,1]=="chr22", "PlotColor"] <- col_vector[22]
+links[links[,1]=="chr23", "PlotColor"] <- col_vector[23]
+links[links[,1]=="chr24", "PlotColor"] <- col_vector[24]
+links[links[,1]=="chr25", "PlotColor"] <- col_vector[25]
+links[links[,1]=="chr26", "PlotColor"] <- col_vector[26]
+links[links[,1]=="chr27", "PlotColor"] <- col_vector[27]
+links[links[,1]=="chr28", "PlotColor"] <- col_vector[28]
+links[links[,1]=="chr29", "PlotColor"] <- col_vector[29]
+links[links[,1]=="chr30", "PlotColor"] <- col_vector[30]
+links[links[,1]=="chr31", "PlotColor"] <- col_vector[31]
+links[links[,1]=="chr32", "PlotColor"] <- col_vector[32]
+links[links[,1]=="chr33", "PlotColor"] <- col_vector[33]
+
+RCircos.Link.Plot(links, track.num = 1)
+
+
+```
+
+
+Checking for recombination suppression
+
+```{r}
+
+recombinationchr1 <- rep(0,(length(chr1[,2])-1))
+for (i in 1:(length(chr1[,2])-1)) recombinationchr1[i] <- (chr1[i+1,2] - chr1[i,2]) 
+recombinationchr1>1000000
+chr1[recombinationchr1>1000000,]
+#2, from the same LG, but there is an inversion in that area
+chr1
+
+recombinationchr2 <- rep(0,(length(chr2[,2])-1))
+for (i in 1:(length(chr2[,2])-1)) recombinationchr2[i] <- (chr2[i+1,2] - chr2[i,2]) 
+recombinationchr2>1000000
+chr2[recombinationchr2>1000000,]
+#0
+chr2
+
+recombinationchr3 <- rep(0,(length(chr3[,2])-1))
+for (i in 1:(length(chr3[,2])-1)) recombinationchr3[i] <- (chr3[i+1,2] - chr3[i,2]) 
+recombinationchr3>1000000
+chr3[recombinationchr3>1000000,]
+#1, from the same LG, there is also at least an inversion in that chromosome
+chr3
+
+recombinationchr4 <- rep(0,(length(chr4[,2])-1))
+for (i in 1:(length(chr4[,2])-1)) recombinationchr4[i] <- (chr4[i+1,2] - chr4[i,2]) 
+recombinationchr4>1000000
+chr4[recombinationchr4>1000000,]
+#0
+chr4
+
+recombinationchr5 <- rep(0,(length(chr5[,2])-1))
+for (i in 1:(length(chr5[,2])-1)) recombinationchr5[i] <- (chr5[i+1,2] - chr5[i,2]) 
+recombinationchr5>1000000
+chr5[recombinationchr5>1000000,]
+#2, from the same LG, but there is also an inversion in this chromosome
+chr5
+
+recombinationchr6 <- rep(0,(length(chr6[,2])-1))
+for (i in 1:(length(chr6[,2])-1)) recombinationchr6[i] <- (chr6[i+1,2] - chr6[i,2]) 
+recombinationchr6>1000000
+chr6[recombinationchr6>1000000,]
+#0
+chr6
+
+recombinationchr7 <- rep(0,(length(chr7[,2])-1))
+for (i in 1:(length(chr7[,2])-1)) recombinationchr7[i] <- (chr7[i+1,2] - chr7[i,2]) 
+recombinationchr7>1000000
+chr7[recombinationchr7>1000000,]
+#1 but from 2 linkage groups
+chr7
+
+recombinationchr8 <- rep(0,(length(chr8[,2])-1))
+for (i in 1:(length(chr8[,2])-1)) recombinationchr8[i] <- (chr8[i+1,2] - chr8[i,2]) 
+recombinationchr8>1000000
+chr8[recombinationchr8>1000000,]
+#1 but from 2 linkage groups
+chr8
+
+recombinationchr9 <- rep(0,(length(chr9[,2])-1))
+for (i in 1:(length(chr9[,2])-1)) recombinationchr9[i] <- (chr9[i+1,2] - chr9[i,2]) 
+recombinationchr9>1000000
+chr9[recombinationchr9>1000000,]
+#1 but from 2 linkage groups
+chr9
+
+recombinationchr10 <- rep(0,(length(chr10[,2])-1))
+for (i in 1:(length(chr10[,2])-1)) recombinationchr10[i] <- (chr10[i+1,2] - chr10[i,2]) 
+recombinationchr10>1000000
+chr10[recombinationchr10>1000000,]
+#1, from the same LG and no inversions
+chr10
+
+recombinationchr11 <- rep(0,(length(chr11[,2])-1))
+for (i in 1:(length(chr11[,2])-1)) recombinationchr11[i] <- (chr11[i+1,2] - chr11[i,2]) 
+recombinationchr11>1000000
+chr11[recombinationchr11>1000000,]
+#1, from the same LG, no inversions (a chunks also in the LG side)
+chr11
+
+recombinationchr12 <- rep(0,(length(chr12[,2])-1))
+for (i in 1:(length(chr12[,2])-1)) recombinationchr12[i] <- (chr12[i+1,2] - chr12[i,2]) 
+recombinationchr12>1000000
+chr12[recombinationchr12>1000000,]
+#2, from the same LG, no inversions
+chr12
+
+recombinationchr13 <- rep(0,(length(chr13[,2])-1))
+for (i in 1:(length(chr13[,2])-1)) recombinationchr13[i] <- (chr13[i+1,2] - chr13[i,2]) 
+recombinationchr13>1000000
+chr13[recombinationchr13>1000000,]
+#0
+chr13
+
+recombinationchr14 <- rep(0,(length(chr14[,2])-1))
+for (i in 1:(length(chr14[,2])-1)) recombinationchr14[i] <- (chr14[i+1,2] - chr14[i,2]) 
+recombinationchr14>1000000
+chr14[recombinationchr14>1000000,]
+#1 but from 2 linkage groups
+chr14
+
+recombinationchr15 <- rep(0,(length(chr15[,2])-1))
+for (i in 1:(length(chr15[,2])-1)) recombinationchr15[i] <- (chr15[i+1,2] - chr15[i,2]) 
+recombinationchr15>1000000
+chr15[recombinationchr15>1000000,]
+#0
+chr15
+
+recombinationchr16 <- rep(0,(length(chr16[,2])-1))
+for (i in 1:(length(chr16[,2])-1)) recombinationchr16[i] <- (chr16[i+1,2] - chr16[i,2]) 
+recombinationchr16>1000000
+chr16[recombinationchr16>1000000,]
+#0
+chr16
+
+recombinationchr17 <- rep(0,(length(chr17[,2])-1))
+for (i in 1:(length(chr17[,2])-1)) recombinationchr17[i] <- (chr17[i+1,2] - chr17[i,2]) 
+recombinationchr17>1000000
+chr17[recombinationchr17>1000000,]
+#0
+chr17
+
+recombinationchr18 <- rep(0,(length(chr18[,2])-1))
+for (i in 1:(length(chr18[,2])-1)) recombinationchr18[i] <- (chr18[i+1,2] - chr18[i,2]) 
+recombinationchr18>1000000
+chr18[recombinationchr18>1000000,]
+#1, for the same LG
+chr18
+
+recombinationchr19 <- rep(0,(length(chr19[,2])-1))
+for (i in 1:(length(chr19[,2])-1)) recombinationchr19[i] <- (chr19[i+1,2] - chr19[i,2]) 
+recombinationchr19>1000000
+chr19[recombinationchr19>1000000,]
+#0
+chr19
+
+recombinationchr20 <- rep(0,(length(chr20[,2])-1))
+for (i in 1:(length(chr20[,2])-1)) recombinationchr20[i] <- (chr20[i+1,2] - chr20[i,2]) 
+recombinationchr20>1000000
+chr20[recombinationchr20>1000000,]
+#0
+chr20
+
+recombinationchr21 <- rep(0,(length(chr21[,2])-1))
+for (i in 1:(length(chr21[,2])-1)) recombinationchr21[i] <- (chr21[i+1,2] - chr21[i,2]) 
+recombinationchr21>1000000
+chr21[recombinationchr21>1000000,]
+#0
+chr21
+
+recombinationchr22 <- rep(0,(length(chr22[,2])-1))
+for (i in 1:(length(chr22[,2])-1)) recombinationchr22[i] <- (chr22[i+1,2] - chr22[i,2]) 
+recombinationchr22>1000000
+chr22[recombinationchr22>1000000,]
+#1, from the same LG, no inversions (a chunks also in the LG side)
+chr22
+
+recombinationchr23 <- rep(0,(length(chr23[,2])-1))
+for (i in 1:(length(chr23[,2])-1)) recombinationchr23[i] <- (chr23[i+1,2] - chr23[i,2]) 
+recombinationchr23>1000000
+chr23[recombinationchr23>1000000,]
+#0
+chr23
+
+recombinationchr24 <- rep(0,(length(chr24[,2])-1))
+for (i in 1:(length(chr24[,2])-1)) recombinationchr24[i] <- (chr24[i+1,2] - chr24[i,2]) 
+recombinationchr24>1000000
+chr24[recombinationchr24>1000000,]
+#1 from the same LG, no inversions (a chunks also in the LG side)
+chr24
+
+recombinationchr25 <- rep(0,(length(chr25[,2])-1))
+for (i in 1:(length(chr25[,2])-1)) recombinationchr25[i] <- (chr25[i+1,2] - chr25[i,2]) 
+recombinationchr25>1000000
+chr25[recombinationchr25>1000000,]
+#0
+chr25
+
+
+recombinationchr26 <- rep(0,(length(chr26[,2])-1))
+for (i in 1:(length(chr26[,2])-1)) recombinationchr26[i] <- (chr26[i+1,2] - chr26[i,2]) 
+recombinationchr26>1000000
+chr26[recombinationchr26>1000000,]
+#0
+chr26
+
+recombinationchr27 <- rep(0,(length(chr27[,2])-1))
+for (i in 1:(length(chr27[,2])-1)) recombinationchr27[i] <- (chr27[i+1,2] - chr27[i,2]) 
+recombinationchr27>1000000
+chr27[recombinationchr27>1000000,]
+#2, from the same LG, , no inversions (a chunk also in the LG side)
+chr27
+
+recombinationchr28 <- rep(0,(length(chr28[,2])-1))
+for (i in 1:(length(chr28[,2])-1)) recombinationchr28[i] <- (chr28[i+1,2] - chr28[i,2]) 
+recombinationchr28>1000000
+chr28[recombinationchr28>1000000,]
+#0
+chr28
+
+recombinationchr29 <- rep(0,(length(chr29[,2])-1))
+for (i in 1:(length(chr29[,2])-1)) recombinationchr29[i] <- (chr29[i+1,2] - chr29[i,2]) 
+recombinationchr29>1000000
+chr29[recombinationchr29>1000000,]
+#0
+chr29
+
+recombinationchr30 <- rep(0,(length(chr30[,2])-1))
+for (i in 1:(length(chr30[,2])-1)) recombinationchr30[i] <- (chr30[i+1,2] - chr30[i,2]) 
+recombinationchr30>1000000
+chr30[recombinationchr30>1000000,]
+#0
+chr30
+
+recombinationchr31 <- rep(0,(length(chr31[,2])-1))
+for (i in 1:(length(chr31[,2])-1)) recombinationchr31[i] <- (chr31[i+1,2] - chr31[i,2]) 
+recombinationchr31>1000000
+chr31[recombinationchr31>1000000,]
+#1, from the same LG, no inversions (a chunks also in the LG side)
+chr31
+
+recombinationchr32 <- rep(0,(length(chr32[,2])-1))
+for (i in 1:(length(chr32[,2])-1)) recombinationchr32[i] <- (chr32[i+1,2] - chr32[i,2]) 
+recombinationchr32>1000000
+chr32[recombinationchr32>1000000,]
+#1, from the same LG, no inversions (a chunk also in the LG side)
+chr32
+
+recombinationchr33 <- rep(0,(length(chr33[,2])-1))
+for (i in 1:(length(chr33[,2])-1)) recombinationchr33[i] <- (chr33[i+1,2] - chr33[i,2]) 
+recombinationchr33>1000000
+chr33[recombinationchr33>1000000,]
+#1, but from different LGs
+chr33
+
+```
+
+
+
+
+Defining blocks
+
+```{r}
+
+source("genomeblocks.R")
+
+outblock1 <- genomeblocks(chr1)
+outblock1
+outblock2 <- genomeblocks(chr2)
+outblock2
+outblock3 <- genomeblocks(chr3)
+outblock3
+outblock4 <- genomeblocks(chr4)
+outblock4
+outblock5 <- genomeblocks(chr5)
+outblock5
+outblock6 <- genomeblocks(chr6)
+outblock6
+outblock7 <- genomeblocks(chr7)
+outblock7
+outblock8 <- genomeblocks(chr8)
+outblock8
+outblock9 <- genomeblocks(chr9)
+outblock9
+outblock10 <- genomeblocks(chr10)
+outblock10
+outblock11 <- genomeblocks(chr11)
+outblock11
+outblock12 <- genomeblocks(chr12)
+outblock12
+outblock13 <- genomeblocks(chr13)
+outblock13
+outblock14 <- genomeblocks(chr14)
+outblock14
+outblock15 <- genomeblocks(chr15)
+outblock15
+outblock16 <- genomeblocks(chr16)
+outblock16
+outblock17 <- genomeblocks(chr17)
+outblock17
+outblock18 <- genomeblocks(chr18)
+outblock18
+outblock19 <- genomeblocks(chr19)
+outblock19
+outblock20 <- genomeblocks(chr20)
+outblock20
+outblock21 <- genomeblocks(chr21)
+outblock21
+outblock22 <- genomeblocks(chr22)
+outblock22
+outblock23 <- genomeblocks(chr23)
+outblock23
+outblock24 <- genomeblocks(chr24)
+outblock24
+outblock25 <- genomeblocks(chr25)
+outblock25
+outblock26 <- genomeblocks(chr26)
+outblock26
+outblock27 <- genomeblocks(chr27)
+outblock27
+outblock28 <- genomeblocks(chr28)
+outblock28
+outblock29 <- genomeblocks(chr29)
+outblock29
+outblock30 <- genomeblocks(chr30)
+outblock30
+outblock31 <- genomeblocks(chr31)
+outblock31
+outblock32 <- genomeblocks(chr32)
+outblock32
+outblock33 <- genomeblocks(chr33)
+outblock33
+
+
+```
+
+
+LET'S USE ANDRÉ CENTROMERIC REPEAT
+We will use this one in the paper.
+
+```{r}
+BCR <- read.csv("BCR.csv")
+#Somewhat similar sequences (blastn), default
+BCR
+
+BCR1 <- BCR[BCR$Chromosome=="chr1",]
+BCR1
+BCR2 <- BCR[BCR$Chromosome=="chr2",]
+BCR2
+BCR3 <- BCR[BCR$Chromosome=="chr3",]
+BCR3
+BCR4 <- BCR[BCR$Chromosome=="chr4",]
+BCR4
+BCR5 <- BCR[BCR$Chromosome=="chr5",]
+BCR5
+BCR6 <- BCR[BCR$Chromosome=="chr6",]
+BCR6
+BCR7 <- BCR[BCR$Chromosome=="chr7",]
+BCR7
+BCR8 <- BCR[BCR$Chromosome=="chr8",]
+BCR8
+BCR9 <- BCR[BCR$Chromosome=="chr9",]
+BCR9
+BCR10 <- BCR[BCR$Chromosome=="chr10",]
+BCR10
+BCR11 <- BCR[BCR$Chromosome=="chr11",]
+BCR11
+BCR12 <- BCR[BCR$Chromosome=="chr12",]
+BCR12
+BCR13 <- BCR[BCR$Chromosome=="chr13",]
+BCR13
+BCR14 <- BCR[BCR$Chromosome=="chr14",]
+BCR14
+BCR15 <- BCR[BCR$Chromosome=="chr15",]
+BCR15
+BCR16 <- BCR[BCR$Chromosome=="chr16",]
+BCR16
+BCR17 <- BCR[BCR$Chromosome=="chr17",]
+BCR17
+BCR18 <- BCR[BCR$Chromosome=="chr18",]
+BCR18
+BCR19 <- BCR[BCR$Chromosome=="chr19",]
+BCR19
+BCR20 <- BCR[BCR$Chromosome=="chr20",]
+BCR20
+BCR21 <- BCR[BCR$Chromosome=="chr21",]
+BCR21
+BCR22 <- BCR[BCR$Chromosome=="chr22",]
+BCR22
+BCR23 <- BCR[BCR$Chromosome=="chr23",]
+BCR23
+BCR24 <- BCR[BCR$Chromosome=="chr24",]
+BCR24
+BCR25 <- BCR[BCR$Chromosome=="chr25",]
+BCR25
+BCR26 <- BCR[BCR$Chromosome=="chr26",]
+BCR26
+BCR27 <- BCR[BCR$Chromosome=="chr27",]
+BCR27
+BCR28 <- BCR[BCR$Chromosome=="chr28",]
+BCR28
+BCR29 <- BCR[BCR$Chromosome=="chr29",]
+BCR29
+BCR30 <- BCR[BCR$Chromosome=="chr30",]
+BCR30
+BCR31 <- BCR[BCR$Chromosome=="chr31",]
+BCR31
+BCR32 <- BCR[BCR$Chromosome=="chr32",]
+BCR32
+BCR33 <- BCR[BCR$Chromosome=="chr33",]
+BCR33
+
+source("genomeblocksBCR.R")
+genomeblocksBCR1 <- genomeblocksBCR(outblock1, BCR1)
+genomeblocksBCR1
+genomeblocksBCR2 <- genomeblocksBCR(outblock2, BCR2)
+genomeblocksBCR2
+genomeblocksBCR3 <- genomeblocksBCR(outblock3, BCR3)
+genomeblocksBCR3
+genomeblocksBCR4 <- genomeblocksBCR(outblock4, BCR4)
+genomeblocksBCR4
+genomeblocksBCR5 <- genomeblocksBCR(outblock5, BCR5)
+genomeblocksBCR5
+genomeblocksBCR6 <- genomeblocksBCR(outblock6, BCR6)
+genomeblocksBCR6
+genomeblocksBCR7 <- genomeblocksBCR(outblock7, BCR7)
+genomeblocksBCR7
+genomeblocksBCR8 <- genomeblocksBCR(outblock8, BCR8)
+genomeblocksBCR8
+genomeblocksBCR9 <- genomeblocksBCR(outblock9, BCR9)
+genomeblocksBCR9
+genomeblocksBCR10 <- genomeblocksBCR(outblock10, BCR10)
+genomeblocksBCR10
+genomeblocksBCR11 <- genomeblocksBCR(outblock11, BCR11)
+genomeblocksBCR11
+genomeblocksBCR12 <- genomeblocksBCR(outblock12, BCR12)
+genomeblocksBCR12
+genomeblocksBCR13 <- genomeblocksBCR(outblock13, BCR13)
+genomeblocksBCR13
+genomeblocksBCR14 <- genomeblocksBCR(outblock14, BCR14)
+genomeblocksBCR14
+genomeblocksBCR15 <- genomeblocksBCR(outblock15, BCR15)
+genomeblocksBCR15
+genomeblocksBCR16 <- genomeblocksBCR(outblock16, BCR16)
+genomeblocksBCR16
+genomeblocksBCR17 <- genomeblocksBCR(outblock17, BCR17)
+genomeblocksBCR17
+genomeblocksBCR18 <- genomeblocksBCR(outblock18, BCR18)
+genomeblocksBCR18
+genomeblocksBCR19 <- genomeblocksBCR(outblock19, BCR19)
+genomeblocksBCR19
+genomeblocksBCR20 <- genomeblocksBCR(outblock20, BCR20)
+genomeblocksBCR20
+genomeblocksBCR21 <- genomeblocksBCR(outblock21, BCR21)
+genomeblocksBCR21
+genomeblocksBCR22 <- genomeblocksBCR(outblock22, BCR22)
+genomeblocksBCR22
+genomeblocksBCR23 <- genomeblocksBCR(outblock23, BCR23)
+genomeblocksBCR23
+genomeblocksBCR24 <- genomeblocksBCR(outblock24, BCR24)
+genomeblocksBCR24
+genomeblocksBCR25 <- genomeblocksBCR(outblock25, BCR25)
+genomeblocksBCR25
+genomeblocksBCR26 <- genomeblocksBCR(outblock26, BCR26)
+genomeblocksBCR26
+genomeblocksBCR27 <- genomeblocksBCR(outblock27, BCR27)
+genomeblocksBCR27
+genomeblocksBCR28 <- genomeblocksBCR(outblock28, BCR28)
+genomeblocksBCR28
+genomeblocksBCR29 <- genomeblocksBCR(outblock29, BCR29)
+genomeblocksBCR29
+genomeblocksBCR30 <- genomeblocksBCR(outblock30, BCR30)
+genomeblocksBCR30
+genomeblocksBCR31 <- genomeblocksBCR(outblock31, BCR31)
+genomeblocksBCR31
+genomeblocksBCR32 <- genomeblocksBCR(outblock32, BCR32)
+genomeblocksBCR32
+genomeblocksBCR33 <- genomeblocksBCR(outblock33, BCR33)
+genomeblocksBCR33
+
+genomeblocksBCRall <- rbind(genomeblocksBCR1,genomeblocksBCR2,genomeblocksBCR3,genomeblocksBCR4,genomeblocksBCR5,genomeblocksBCR6,genomeblocksBCR7,genomeblocksBCR8,genomeblocksBCR9,genomeblocksBCR10,genomeblocksBCR11,genomeblocksBCR12,genomeblocksBCR13,genomeblocksBCR14,genomeblocksBCR15,genomeblocksBCR16,genomeblocksBCR17,genomeblocksBCR18,genomeblocksBCR19,genomeblocksBCR20,genomeblocksBCR21,genomeblocksBCR22,genomeblocksBCR23,genomeblocksBCR24,genomeblocksBCR25,genomeblocksBCR26,genomeblocksBCR27,genomeblocksBCR28,genomeblocksBCR29,genomeblocksBCR30,genomeblocksBCR31,genomeblocksBCR32,genomeblocksBCR33)
+
+
+length(genomeblocksBCRall[,4][genomeblocksBCRall[,4] == "conserved"])
+length(genomeblocksBCRall[,4][genomeblocksBCRall[,4] == "fisfus"])
+length(genomeblocksBCRall[,4][genomeblocksBCRall[,4] == "singlemarker"])
+
+mean(as.numeric(genomeblocksBCRall[,5][genomeblocksBCRall[,4] == "conserved"]))
+mean(as.numeric(genomeblocksBCRall[,5][genomeblocksBCRall[,4] == "fisfus"]))
+mean(as.numeric(genomeblocksBCRall[,5][genomeblocksBCRall[,4] == "singlemarker"]))
+
+sd(as.numeric(genomeblocksBCRall[,5][genomeblocksBCRall[,4] == "conserved"]))
+sd(as.numeric(genomeblocksBCRall[,5][genomeblocksBCRall[,4] == "fisfus"]))
+sd(as.numeric(genomeblocksBCRall[,5][genomeblocksBCRall[,4] == "singlemarker"]))
+
+genomeblocksBCRall
+genomeblocksBCRall[genomeblocksBCRall[,4] != "singlemarker", ]
+
+
+```
+
+
+
+Now we are going to check whats going on with genes
+
+```{r}
+
+
+Genes <- read.csv("Cscoparia_v1.0.DNA_genes.gff", skip = 2, sep = "\t")
+Genes
+Genes <- Genes[,c(1,4,5)]
+Genes
+Genes[Genes[,1]=="Csco_scaffold_1",1] <- "chr1"
+Genes[Genes[,1]=="Csco_scaffold_2",1] <- "chr2"
+Genes[Genes[,1]=="Csco_scaffold_3",1] <- "chr3"
+Genes[Genes[,1]=="Csco_scaffold_4",1] <- "chr4"
+Genes[Genes[,1]=="Csco_scaffold_5",1] <- "chr5"
+Genes[Genes[,1]=="Csco_scaffold_6",1] <- "chr6"
+Genes[Genes[,1]=="Csco_scaffold_7",1] <- "chr7"
+Genes[Genes[,1]=="Csco_scaffold_8",1] <- "chr8"
+Genes[Genes[,1]=="Csco_scaffold_9",1] <- "chr9"
+Genes[Genes[,1]=="Csco_scaffold_10",1] <- "chr10"
+Genes[Genes[,1]=="Csco_scaffold_11",1] <- "chr11"
+Genes[Genes[,1]=="Csco_scaffold_12",1] <- "chr12"
+Genes[Genes[,1]=="Csco_scaffold_13",1] <- "chr13"
+Genes[Genes[,1]=="Csco_scaffold_14",1] <- "chr14"
+Genes[Genes[,1]=="Csco_scaffold_15",1] <- "chr15"
+Genes[Genes[,1]=="Csco_scaffold_16",1] <- "chr16"
+Genes[Genes[,1]=="Csco_scaffold_17",1] <- "chr17"
+Genes[Genes[,1]=="Csco_scaffold_18",1] <- "chr18"
+Genes[Genes[,1]=="Csco_scaffold_19",1] <- "chr19"
+Genes[Genes[,1]=="Csco_scaffold_20",1] <- "chr20"
+Genes[Genes[,1]=="Csco_scaffold_21",1] <- "chr21"
+Genes[Genes[,1]=="Csco_scaffold_22",1] <- "chr22"
+Genes[Genes[,1]=="Csco_scaffold_23",1] <- "chr23"
+Genes[Genes[,1]=="Csco_scaffold_24",1] <- "chr24"
+Genes[Genes[,1]=="Csco_scaffold_25",1] <- "chr25"
+Genes[Genes[,1]=="Csco_scaffold_26",1] <- "chr26"
+Genes[Genes[,1]=="Csco_scaffold_27",1] <- "chr27"
+Genes[Genes[,1]=="Csco_scaffold_28",1] <- "chr28"
+Genes[Genes[,1]=="Csco_scaffold_29",1] <- "chr29"
+Genes[Genes[,1]=="Csco_scaffold_30",1] <- "chr30"
+Genes[Genes[,1]=="Csco_scaffold_31",1] <- "chr31"
+Genes[Genes[,1]=="Csco_scaffold_32",1] <- "chr32"
+Genes[Genes[,1]=="Csco_scaffold_33",1] <- "chr33"
+colnames(Genes) <- c("Chromosome", "Start", "End")
+
+Genes1 <- Genes[Genes$Chromosome=="chr1",]
+Genes1
+Genes2 <- Genes[Genes$Chromosome=="chr2",]
+Genes2
+Genes3 <- Genes[Genes$Chromosome=="chr3",]
+Genes3
+Genes4 <- Genes[Genes$Chromosome=="chr4",]
+Genes4
+Genes5 <- Genes[Genes$Chromosome=="chr5",]
+Genes5
+Genes6 <- Genes[Genes$Chromosome=="chr6",]
+Genes6
+Genes7 <- Genes[Genes$Chromosome=="chr7",]
+Genes7
+Genes8 <- Genes[Genes$Chromosome=="chr8",]
+Genes8
+Genes9 <- Genes[Genes$Chromosome=="chr9",]
+Genes9
+Genes10 <- Genes[Genes$Chromosome=="chr10",]
+Genes10
+Genes11 <- Genes[Genes$Chromosome=="chr11",]
+Genes11
+Genes12 <- Genes[Genes$Chromosome=="chr12",]
+Genes12
+Genes13 <- Genes[Genes$Chromosome=="chr13",]
+Genes13
+Genes14 <- Genes[Genes$Chromosome=="chr14",]
+Genes14
+Genes15 <- Genes[Genes$Chromosome=="chr15",]
+Genes15
+Genes16 <- Genes[Genes$Chromosome=="chr16",]
+Genes16
+Genes17 <- Genes[Genes$Chromosome=="chr17",]
+Genes17
+Genes18 <- Genes[Genes$Chromosome=="chr18",]
+Genes18
+Genes19 <- Genes[Genes$Chromosome=="chr19",]
+Genes19
+Genes20 <- Genes[Genes$Chromosome=="chr20",]
+Genes20
+Genes21 <- Genes[Genes$Chromosome=="chr21",]
+Genes21
+Genes22 <- Genes[Genes$Chromosome=="chr22",]
+Genes22
+Genes23 <- Genes[Genes$Chromosome=="chr23",]
+Genes23
+Genes24 <- Genes[Genes$Chromosome=="chr24",]
+Genes24
+Genes25 <- Genes[Genes$Chromosome=="chr25",]
+Genes25
+Genes26 <- Genes[Genes$Chromosome=="chr26",]
+Genes26
+Genes27 <- Genes[Genes$Chromosome=="chr27",]
+Genes27
+Genes28 <- Genes[Genes$Chromosome=="chr28",]
+Genes28
+Genes29 <- Genes[Genes$Chromosome=="chr29",]
+Genes29
+Genes30 <- Genes[Genes$Chromosome=="chr30",]
+Genes30
+Genes31 <- Genes[Genes$Chromosome=="chr31",]
+Genes31
+Genes32 <- Genes[Genes$Chromosome=="chr32",]
+Genes32
+Genes33 <- Genes[Genes$Chromosome=="chr33",]
+Genes33
+
+
+#We can use the same function than with the BCR, something very similar
+source("genomeblocksGenes.R")
+genomeblocksGenes1 <- genomeblocksGenes(cbind(genomeblocksBCR1,0), Genes1)
+genomeblocksGenes1
+genomeblocksGenes2 <- genomeblocksGenes(cbind(genomeblocksBCR2,0), Genes2)
+genomeblocksGenes2
+genomeblocksGenes3 <- genomeblocksGenes(cbind(genomeblocksBCR3,0), Genes3)
+genomeblocksGenes3
+genomeblocksGenes4 <- genomeblocksGenes(cbind(genomeblocksBCR4,0), Genes4)
+genomeblocksGenes4
+genomeblocksGenes5 <- genomeblocksGenes(cbind(genomeblocksBCR5,0), Genes5)
+genomeblocksGenes5
+genomeblocksGenes6 <- genomeblocksGenes(cbind(genomeblocksBCR6,0), Genes6)
+genomeblocksGenes6
+genomeblocksGenes7 <- genomeblocksGenes(cbind(genomeblocksBCR7,0), Genes7)
+genomeblocksGenes7
+genomeblocksGenes8 <- genomeblocksGenes(cbind(genomeblocksBCR8,0), Genes8)
+genomeblocksGenes8
+genomeblocksGenes9 <- genomeblocksGenes(cbind(genomeblocksBCR9,0), Genes9)
+genomeblocksGenes9
+genomeblocksGenes10 <- genomeblocksGenes(cbind(genomeblocksBCR10,0), Genes10)
+genomeblocksGenes10
+genomeblocksGenes11 <- genomeblocksGenes(cbind(genomeblocksBCR11,0), Genes11)
+genomeblocksGenes11
+genomeblocksGenes12 <- genomeblocksGenes(cbind(genomeblocksBCR12,0), Genes12)
+genomeblocksGenes12
+genomeblocksGenes13 <- genomeblocksGenes(cbind(genomeblocksBCR13,0), Genes13)
+genomeblocksGenes13
+genomeblocksGenes14 <- genomeblocksGenes(cbind(genomeblocksBCR14,0), Genes14)
+genomeblocksGenes14
+genomeblocksGenes15 <- genomeblocksGenes(cbind(genomeblocksBCR15,0), Genes15)
+genomeblocksGenes15
+genomeblocksGenes16 <- genomeblocksGenes(cbind(genomeblocksBCR16,0), Genes16)
+genomeblocksGenes16
+genomeblocksGenes17 <- genomeblocksGenes(cbind(genomeblocksBCR17,0), Genes17)
+genomeblocksGenes17
+genomeblocksGenes18 <- genomeblocksGenes(cbind(genomeblocksBCR18,0), Genes18)
+genomeblocksGenes18
+genomeblocksGenes19 <- genomeblocksGenes(cbind(genomeblocksBCR19,0), Genes19)
+genomeblocksGenes19
+genomeblocksGenes20 <- genomeblocksGenes(cbind(genomeblocksBCR20,0), Genes20)
+genomeblocksGenes20
+genomeblocksGenes21 <- genomeblocksGenes(cbind(genomeblocksBCR21,0), Genes21)
+genomeblocksGenes21
+genomeblocksGenes22 <- genomeblocksGenes(cbind(genomeblocksBCR22,0), Genes22)
+genomeblocksGenes22
+genomeblocksGenes23 <- genomeblocksGenes(cbind(genomeblocksBCR23,0), Genes23)
+genomeblocksGenes23
+genomeblocksGenes24 <- genomeblocksGenes(cbind(genomeblocksBCR24,0), Genes24)
+genomeblocksGenes24
+genomeblocksGenes25 <- genomeblocksGenes(cbind(genomeblocksBCR25,0), Genes25)
+genomeblocksGenes25
+genomeblocksGenes26 <- genomeblocksGenes(cbind(genomeblocksBCR26,0), Genes26)
+genomeblocksGenes26
+genomeblocksGenes27 <- genomeblocksGenes(cbind(genomeblocksBCR27,0), Genes27)
+genomeblocksGenes27
+genomeblocksGenes28 <- genomeblocksGenes(cbind(genomeblocksBCR28,0), Genes28)
+genomeblocksGenes28
+genomeblocksGenes29 <- genomeblocksGenes(cbind(genomeblocksBCR29,0), Genes29)
+genomeblocksGenes29
+genomeblocksGenes30 <- genomeblocksGenes(cbind(genomeblocksBCR30,0), Genes30)
+genomeblocksGenes30
+genomeblocksGenes31 <- genomeblocksGenes(cbind(genomeblocksBCR31,0), Genes31)
+genomeblocksGenes31
+genomeblocksGenes32 <- genomeblocksGenes(cbind(genomeblocksBCR32,0), Genes32)
+genomeblocksGenes32
+genomeblocksGenes33 <- genomeblocksGenes(cbind(genomeblocksBCR33,0), Genes33)
+genomeblocksGenes33
+
+
+genomeblocksGenesall <- rbind(cbind(1,genomeblocksGenes1),cbind(2,genomeblocksGenes2),cbind(3,genomeblocksGenes3),cbind(4,genomeblocksGenes4),cbind(5,genomeblocksGenes5),cbind(6,genomeblocksGenes6),cbind(7,genomeblocksGenes7),cbind(8,genomeblocksGenes8),cbind(9,genomeblocksGenes9),cbind(10,genomeblocksGenes10),cbind(11,genomeblocksGenes11),cbind(12,genomeblocksGenes12),cbind(13,genomeblocksGenes13),cbind(14,genomeblocksGenes14),cbind(15,genomeblocksGenes15),cbind(16,genomeblocksGenes16),cbind(17,genomeblocksGenes17),cbind(18,genomeblocksGenes18),cbind(9,genomeblocksGenes19),cbind(20,genomeblocksGenes20),cbind(21,genomeblocksGenes21),cbind(22,genomeblocksGenes22),cbind(23,genomeblocksGenes23),cbind(24,genomeblocksGenes24),cbind(25,genomeblocksGenes25),cbind(26,genomeblocksGenes26),cbind(27,genomeblocksGenes27),cbind(28,genomeblocksGenes28),cbind(29,genomeblocksGenes29),cbind(30,genomeblocksGenes30),cbind(31,genomeblocksGenes31),cbind(32,genomeblocksGenes32),cbind(33,genomeblocksGenes33))
+
+mean(as.numeric(genomeblocksGenesall[,8][genomeblocksGenesall[,5] == "conserved"]))
+mean(as.numeric(genomeblocksGenesall[,8][genomeblocksGenesall[,5] == "fisfus"]))
+mean(as.numeric(genomeblocksGenesall[,8][genomeblocksGenesall[,5] == "singlemarker"]))
+
+sd(as.numeric(genomeblocksGenesall[,8][genomeblocksGenesall[,5] == "conserved"]))
+sd(as.numeric(genomeblocksGenesall[,8][genomeblocksGenesall[,5] == "fisfus"]))
+sd(as.numeric(genomeblocksGenesall[,8][genomeblocksGenesall[,5] == "singlemarker"]))
+
+
+genomeblocksGenesall
+genomeblocksGenesall
+genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", ]
+
+glm_genomeblocks_all <- genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", -c(2:4)]
+glm_genomeblocks_all[,2][glm_genomeblocks_all[,2]=="conserved"] <- 0
+glm_genomeblocks_all[,2][glm_genomeblocks_all[,2]=="fisfus"] <- 1
+
+library(lme4)
+glm_genomeblocks_all<- data.frame (glm_genomeblocks_all)
+colnames(glm_genomeblocks_all) <- c("chromosome", "type", "BCR",  "GC", "Genes")
+fittedModel <- glmer (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + (1|chromosome), data = glm_genomeblocks_all, family = binomial(link = "logit"))
+summary(fittedModel)
+
+fittedModel2 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes), family = binomial(link = "logit"), data = glm_genomeblocks_all)
+summary(fittedModel2)
+
+fittedModel3 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes), family = gaussian(link = "identity"), data = glm_genomeblocks_all)
+summary(fittedModel3)
+
+fittedModel4 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes), family = poisson(link = "log"), data = glm_genomeblocks_all)
+summary(fittedModel4)
+
+library(DHARMa)
+
+simulationOutput <- simulateResiduals(fittedModel = fittedModel, plot = F)
+plot(simulationOutput)
+
+simulationOutput2 <- simulateResiduals(fittedModel = fittedModel2, plot = F)
+plot(simulationOutput2)
+
+simulationOutput3 <- simulateResiduals(fittedModel = fittedModel3, plot = F)
+plot(simulationOutput3)
+
+simulationOutput4 <- simulateResiduals(fittedModel = fittedModel4, plot = F)
+plot(simulationOutput4)
+
+```
+
+
+Simulating the rearrangements!
+We have done here some proofs to set up the definitive analyses.
+Note: This is not included in the paper.
+
+```{r}
+
+source("fisfusmodeling.R") 
+
+
+# Carex scoparia and Carex scoparia LG got separated ca. 0.3 mya maximum 
+# number of rearrangements are ca. 15 events per million year x 0.6 my (0.3 + 0.3 million years)
+# pfis = 0.5
+
+rearrangements = 9
+pfis = 0.5
+
+genome <- rbind(
+c("chr1",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr1",][order(bowtie2[bowtie2[,1]=="chr1",2]),], 
+c(both[1,1],both[1,3]-1,both[1,3],NA), 
+c("chr2",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr2",][order(bowtie2[bowtie2[,1]=="chr2",2]),], 
+c(both[2,1],both[2,3]-1,both[2,3],NA),
+c("chr3",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr3",][order(bowtie2[bowtie2[,1]=="chr3",2]),], 
+c(both[3,1],both[3,3]-1,both[3,3],NA),
+c("chr4",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr4",][order(bowtie2[bowtie2[,1]=="chr4",2]),], 
+c(both[4,1],both[4,3]-1,both[4,3],NA),
+c("chr5",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr5",][order(bowtie2[bowtie2[,1]=="chr5",2]),], 
+c(both[5,1],both[5,3]-1,both[5,3],NA),
+c("chr6",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr6",][order(bowtie2[bowtie2[,1]=="chr6",2]),], 
+c(both[6,1],both[6,3]-1,both[6,3],NA),
+c("chr7",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr7",][order(bowtie2[bowtie2[,1]=="chr7",2]),], 
+c(both[7,1],both[7,3]-1,both[7,3],NA),
+c("chr8",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr8",][order(bowtie2[bowtie2[,1]=="chr8",2]),], 
+c(both[8,1],both[8,3]-1,both[8,3],NA),
+c("chr9",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr9",][order(bowtie2[bowtie2[,1]=="chr9",2]),], 
+c(both[9,1],both[9,3]-1,both[9,3],NA),
+c("chr10",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr10",][order(bowtie2[bowtie2[,1]=="chr10",2]),], 
+c(both[10,1],both[10,3]-1,both[10,3],NA),
+c("chr11",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr11",][order(bowtie2[bowtie2[,1]=="chr11",2]),], 
+c(both[11,1],both[11,3]-1,both[11,3],NA),
+c("chr12",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr12",][order(bowtie2[bowtie2[,1]=="chr12",2]),], 
+c(both[12,1],both[12,3]-1,both[12,3],NA),
+c("chr13",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr13",][order(bowtie2[bowtie2[,1]=="chr13",2]),], 
+c(both[13,1],both[13,3]-1,both[13,3],NA),
+c("chr14",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr14",][order(bowtie2[bowtie2[,1]=="chr14",2]),], 
+c(both[14,1],both[14,3]-1,both[14,3],NA),
+c("chr15",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr15",][order(bowtie2[bowtie2[,1]=="chr15",2]),], 
+c(both[15,1],both[15,3]-1,both[15,3],NA),
+c("chr16",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr16",][order(bowtie2[bowtie2[,1]=="chr16",2]),], 
+c(both[16,1],both[16,3]-1,both[16,3],NA),
+c("chr17",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr17",][order(bowtie2[bowtie2[,1]=="chr17",2]),], 
+c(both[17,1],both[17,3]-1,both[17,3],NA),
+c("chr18",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr18",][order(bowtie2[bowtie2[,1]=="chr18",2]),], 
+c(both[18,1],both[18,3]-1,both[18,3],NA),
+c("chr19",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr19",][order(bowtie2[bowtie2[,1]=="chr19",2]),], 
+c(both[19,1],both[19,3]-1,both[19,3],NA),
+c("chr20",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr20",][order(bowtie2[bowtie2[,1]=="chr20",2]),], 
+c(both[20,1],both[20,3]-1,both[20,3],NA),
+c("chr21",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr21",][order(bowtie2[bowtie2[,1]=="chr21",2]),], 
+c(both[21,1],both[21,3]-1,both[21,3],NA),
+c("chr22",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr22",][order(bowtie2[bowtie2[,1]=="chr22",2]),], 
+c(both[22,1],both[22,3]-1,both[22,3],NA),
+c("chr23",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr23",][order(bowtie2[bowtie2[,1]=="chr23",2]),], 
+c(both[23,1],both[23,3]-1,both[23,3],NA),
+c("chr24",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr24",][order(bowtie2[bowtie2[,1]=="chr24",2]),], 
+c(both[24,1],both[24,3]-1,both[24,3],NA),
+c("chr25",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr25",][order(bowtie2[bowtie2[,1]=="chr25",2]),], 
+c(both[25,1],both[25,3]-1,both[25,3],NA),
+c("chr26",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr26",][order(bowtie2[bowtie2[,1]=="chr26",2]),], 
+c(both[26,1],both[26,3]-1,both[26,3],NA),
+c("chr27",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr27",][order(bowtie2[bowtie2[,1]=="chr27",2]),], 
+c(both[27,1],both[27,3]-1,both[27,3],NA),
+c("chr28",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr28",][order(bowtie2[bowtie2[,1]=="chr28",2]),], 
+c(both[28,1],both[28,3]-1,both[28,3],NA),
+c("chr29",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr29",][order(bowtie2[bowtie2[,1]=="chr29",2]),], 
+c(both[29,1],both[29,3]-1,both[29,3],NA),
+c("chr30",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr30",][order(bowtie2[bowtie2[,1]=="chr30",2]),], 
+c(both[30,1],both[30,3]-1,both[30,3],NA),
+c("chr31",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr31",][order(bowtie2[bowtie2[,1]=="chr31",2]),], 
+c(both[31,1],both[31,3]-1,both[31,3],NA),
+c("chr32",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr32",][order(bowtie2[bowtie2[,1]=="chr32",2]),], 
+c(both[32,1],both[32,3]-1,both[32,3],NA),
+c("chr33",0,1,NA),  
+bowtie2[bowtie2[,1]=="chr33",][order(bowtie2[bowtie2[,1]=="chr33",2]),], 
+c(both[33,1],both[33,3]-1,both[33,3],NA)
+)
+
+littledaleimodel <- fisfusmodelling(genome, rearrangements,pfis)
+
+
+
+
+
+```
+
+Now with permutations
+This is included in the paper
+```{r}
+source("fisfusmodelingperm.R")
+
+rearrangements = 9
+pfis = 0.5
+perm = 999
+#make sure the genome object is right
+source("genome.R")
+
+littledaleimodelperm <- fisfusmodellingperm(genome, rearrangements,pfis,perm)
+#littledaleimodelperm <- littledaleimodelpermcopy
+#littledaleimodelpermcopy <- littledaleimodelperm
+
+littledaleimodelperm[[1]]
+littledaleimodelperm[[100]]
+littledaleimodelperm[[2]]
+
+#IMPORTANT, MAKE SURE YOU RESTORE THE ORIGINAL GENOME!
+source("genome.R")
+genome <- genome[complete.cases(genome),]
+
+for (i in 1:(perm + 1))
+littledaleimodelperm[[i]] <- littledaleimodelperm[[i]][complete.cases(littledaleimodelperm[[i]]),]
+littledaleimodelperm[[2]]
+
+linkssimperm <- list()
+for (i in 1:perm)
+linkssimperm[[i]] <- merge(genome, littledaleimodelperm[[i+1]], by = "Marker", sort = F, no.dups = TRUE)
+linkssimperm[[67]]
+
+length(genome[,4])
+length(unique(genome[,4]))
+dim(linkssimperm[[2]])
+
+for (i in 1:perm)
+linkssimperm[[i]] <- linkssimperm[[i]][,c(2,3,4,5,6,7)]
+
+linkssimperm[[2]]
+
+chr1dsimperm <- list()
+for (i in 1:perm)
+chr1dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr1",]
+chr1dsimperm[[2]]
+chr2dsimperm <- list()
+for (i in 1:perm)
+chr2dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr2",]
+chr3dsimperm <- list()
+for (i in 1:perm)
+chr3dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr3",]
+chr4dsimperm <- list()
+for (i in 1:perm)
+chr4dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr4",]
+chr5dsimperm <- list()
+for (i in 1:perm)
+chr5dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr5",]
+chr6dsimperm <- list()
+for (i in 1:perm)
+chr6dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr6",]
+chr7dsimperm <- list()
+for (i in 1:perm)
+chr7dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr7",]
+chr8dsimperm <- list()
+for (i in 1:perm)
+chr8dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr8",]
+chr9dsimperm <- list()
+for (i in 1:perm)
+chr9dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr9",]
+chr10dsimperm <- list()
+for (i in 1:perm)
+chr10dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr10",]
+chr11dsimperm <- list()
+for (i in 1:perm)
+chr11dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr11",]
+chr12dsimperm <- list()
+for (i in 1:perm)
+chr12dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr12",]
+chr13dsimperm <- list()
+for (i in 1:perm)
+chr13dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr13",]
+chr14dsimperm <- list()
+for (i in 1:perm)
+chr14dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr14",]
+chr15dsimperm <- list()
+for (i in 1:perm)
+chr15dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr15",]
+chr16dsimperm <- list()
+for (i in 1:perm)
+chr16dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr16",]
+chr17dsimperm <- list()
+for (i in 1:perm)
+chr17dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr17",]
+chr18dsimperm <- list()
+for (i in 1:perm)
+chr18dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr18",]
+chr19dsimperm <- list()
+for (i in 1:perm)
+chr19dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr19",]
+chr20dsimperm <- list()
+for (i in 1:perm)
+chr20dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr20",]
+chr21dsimperm <- list()
+for (i in 1:perm)
+chr21dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr21",]
+chr22dsimperm <- list()
+for (i in 1:perm)
+chr22dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr22",]
+chr23dsimperm <- list()
+for (i in 1:perm)
+chr23dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr23",]
+chr24dsimperm <- list()
+for (i in 1:perm)
+chr24dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr24",]
+chr25dsimperm <- list()
+for (i in 1:perm)
+chr25dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr25",]
+chr26dsimperm <- list()
+for (i in 1:perm)
+chr26dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr26",]
+chr27dsimperm <- list()
+for (i in 1:perm)
+chr27dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr27",]
+chr28dsimperm <- list()
+for (i in 1:perm)
+chr28dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr28",]
+chr29dsimperm <- list()
+for (i in 1:perm)
+chr29dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr29",]
+chr30dsimperm <- list()
+for (i in 1:perm)
+chr30dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr30",]
+chr31dsimperm <- list()
+for (i in 1:perm)
+chr31dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr31",]
+chr32dsimperm <- list()
+for (i in 1:perm)
+chr32dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr32",]
+chr33dsimperm <- list()
+for (i in 1:perm)
+chr33dsimperm[[i]] <- linkssimperm[[i]][linkssimperm[[i]][,1]=="chr33",]
+
+source("genomeblocks.R")
+outblock1dsimperm <- list()
+for (i in 1:perm)
+outblock1dsimperm[[i]] <- genomeblocks(chr1dsimperm[[i]])
+outblock2dsimperm <- list()
+for (i in 1:perm)
+outblock2dsimperm[[i]] <- genomeblocks(chr2dsimperm[[i]])
+outblock3dsimperm <- list()
+for (i in 1:perm)
+outblock3dsimperm[[i]] <- genomeblocks(chr3dsimperm[[i]])
+outblock4dsimperm <- list()
+for (i in 1:perm)
+outblock4dsimperm[[i]] <- genomeblocks(chr4dsimperm[[i]])
+outblock5dsimperm <- list()
+for (i in 1:perm)
+outblock5dsimperm[[i]] <- genomeblocks(chr5dsimperm[[i]])
+outblock6dsimperm <- list()
+for (i in 1:perm)
+outblock6dsimperm[[i]] <- genomeblocks(chr6dsimperm[[i]])
+outblock7dsimperm <- list()
+for (i in 1:perm)
+outblock7dsimperm[[i]] <- genomeblocks(chr7dsimperm[[i]])
+outblock8dsimperm <- list()
+for (i in 1:perm)
+outblock8dsimperm[[i]] <- genomeblocks(chr8dsimperm[[i]])
+outblock9dsimperm <- list()
+for (i in 1:perm)
+outblock9dsimperm[[i]] <- genomeblocks(chr9dsimperm[[i]])
+outblock10dsimperm <- list()
+for (i in 1:perm)
+outblock10dsimperm[[i]] <- genomeblocks(chr10dsimperm[[i]])
+outblock11dsimperm <- list()
+for (i in 1:perm)
+outblock11dsimperm[[i]] <- genomeblocks(chr11dsimperm[[i]])
+outblock12dsimperm <- list()
+for (i in 1:perm)
+outblock12dsimperm[[i]] <- genomeblocks(chr12dsimperm[[i]])
+outblock13dsimperm <- list()
+for (i in 1:perm)
+outblock13dsimperm[[i]] <- genomeblocks(chr13dsimperm[[i]])
+outblock14dsimperm <- list()
+for (i in 1:perm)
+outblock14dsimperm[[i]] <- genomeblocks(chr14dsimperm[[i]])
+outblock15dsimperm <- list()
+for (i in 1:perm)
+outblock15dsimperm[[i]] <- genomeblocks(chr15dsimperm[[i]])
+outblock16dsimperm <- list()
+for (i in 1:perm)
+outblock16dsimperm[[i]] <- genomeblocks(chr16dsimperm[[i]])
+outblock17dsimperm <- list()
+for (i in 1:perm)
+outblock17dsimperm[[i]] <- genomeblocks(chr17dsimperm[[i]])
+outblock18dsimperm <- list()
+for (i in 1:perm)
+outblock18dsimperm[[i]] <- genomeblocks(chr18dsimperm[[i]])
+outblock19dsimperm <- list()
+for (i in 1:perm)
+outblock19dsimperm[[i]] <- genomeblocks(chr19dsimperm[[i]])
+outblock20dsimperm <- list()
+for (i in 1:perm)
+outblock20dsimperm[[i]] <- genomeblocks(chr20dsimperm[[i]])
+outblock21dsimperm <- list()
+for (i in 1:perm)
+outblock21dsimperm[[i]] <- genomeblocks(chr21dsimperm[[i]])
+outblock22dsimperm <- list()
+for (i in 1:perm)
+outblock22dsimperm[[i]] <- genomeblocks(chr22dsimperm[[i]])
+outblock23dsimperm <- list()
+for (i in 1:perm)
+outblock23dsimperm[[i]] <- genomeblocks(chr23dsimperm[[i]])
+outblock24dsimperm <- list()
+for (i in 1:perm)
+outblock24dsimperm[[i]] <- genomeblocks(chr24dsimperm[[i]])
+outblock25dsimperm <- list()
+for (i in 1:perm)
+outblock25dsimperm[[i]] <- genomeblocks(chr25dsimperm[[i]])
+outblock26dsimperm <- list()
+for (i in 1:perm)
+outblock26dsimperm[[i]] <- genomeblocks(chr26dsimperm[[i]])
+outblock27dsimperm <- list()
+for (i in 1:perm)
+outblock27dsimperm[[i]] <- genomeblocks(chr27dsimperm[[i]])
+outblock28dsimperm <- list()
+for (i in 1:perm)
+outblock28dsimperm[[i]] <- genomeblocks(chr28dsimperm[[i]])
+outblock29dsimperm <- list()
+for (i in 1:perm)
+outblock29dsimperm[[i]] <- genomeblocks(chr29dsimperm[[i]])
+outblock30dsimperm <- list()
+for (i in 1:perm)
+outblock30dsimperm[[i]] <- genomeblocks(chr30dsimperm[[i]])
+outblock31dsimperm <- list()
+for (i in 1:perm)
+outblock31dsimperm[[i]] <- genomeblocks(chr31dsimperm[[i]])
+outblock32dsimperm <- list()
+for (i in 1:perm)
+outblock32dsimperm[[i]] <- genomeblocks(chr32dsimperm[[i]])
+outblock33dsimperm <- list()
+for (i in 1:perm)
+outblock33dsimperm[[i]] <- genomeblocks(chr33dsimperm[[i]])
+
+
+outblockdsimperm <- list()
+for (i in 1:perm)
+outblockdsimperm[[i]] <- rbind(outblock1dsimperm[[i]],outblock2dsimperm[[i]],outblock3dsimperm[[i]],outblock4dsimperm[[i]],outblock5dsimperm[[i]],outblock6dsimperm[[i]],outblock7dsimperm[[i]],outblock8dsimperm[[i]],outblock9dsimperm[[i]],outblock10dsimperm[[i]],outblock11dsimperm[[i]],outblock12dsimperm[[i]],outblock13dsimperm[[i]],outblock14dsimperm[[i]],outblock15dsimperm[[i]],outblock16dsimperm[[i]],outblock17dsimperm[[i]],outblock18dsimperm[[i]],outblock19dsimperm[[i]],outblock20dsimperm[[i]],outblock21dsimperm[[i]],outblock22dsimperm[[i]],outblock23dsimperm[[i]],outblock24dsimperm[[i]],outblock25dsimperm[[i]],outblock26dsimperm[[i]],outblock27dsimperm[[i]],outblock28dsimperm[[i]],outblock29dsimperm[[i]],outblock30dsimperm[[i]],outblock31dsimperm[[i]],outblock32dsimperm[[i]],outblock33dsimperm[[i]])
+
+numberofconserved <- vector()
+for (i in 1:perm)
+numberofconserved[i] <- dim(outblockdsimperm[[i]][outblockdsimperm[[i]][,4]=="conserved",])[1]
+numberofconserved
+numberofsinglemarker <- vector()
+for (i in 1:perm)
+numberofsinglemarker[i] <- dim(outblockdsimperm[[i]][outblockdsimperm[[i]][,4]=="singlemarker",])[1]
+numberofsinglemarker
+numberoffisfus <- vector()
+for (i in 1:perm)
+numberoffisfus[i] <- dim(outblockdsimperm[[i]][outblockdsimperm[[i]][,4]=="fisfus",])[1]
+numberoffisfus
+sumconserved <- vector()
+for (i in 1:perm)
+sumconserved[i] <- sum(as.numeric(outblockdsimperm[[i]][outblockdsimperm[[i]][,4]=="conserved",3]) - as.numeric(outblockdsimperm[[i]][outblockdsimperm[[i]][,4]=="conserved",2]))
+sumconserved
+meanconserved <- vector()
+for (i in 1:perm)
+meanconserved[i] <- mean(as.numeric(outblockdsimperm[[i]][outblockdsimperm[[i]][,4]=="conserved",3]) - as.numeric(outblockdsimperm[[i]][outblockdsimperm[[i]][,4]=="conserved",2]))
+meanconserved
+
+#Datos reales
+genomeblocksBCRall
+
+dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="conserved",])[1]
+dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="singlemarker",])[1]
+dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="fisfus",])[1]
+
+#make some histograms!!!!
+hist(numberoffisfus, main = "number of rearrangements")
+abline(v=dim(genomeblocksBCRall[genomeblocksBCRall[,4]=="fisfus",])[1])
+
+sort(numberoffisfus)
+
+
+```
+
+
+Analyses of the ClassII TEs analyzed by André Marques
+```{r}
+#TE sent by André Marques
+TE <- read.table("Cscoparia_v1.0.DNA_DNA_transposons.gff", sep = "\t")
+TE
+TE <- TE[,c(1,4,5)]
+TE
+TE[TE[,1]=="Csco_scaffold_1",1] <- "chr1"
+TE[TE[,1]=="Csco_scaffold_2",1] <- "chr2"
+TE[TE[,1]=="Csco_scaffold_3",1] <- "chr3"
+TE[TE[,1]=="Csco_scaffold_4",1] <- "chr4"
+TE[TE[,1]=="Csco_scaffold_5",1] <- "chr5"
+TE[TE[,1]=="Csco_scaffold_6",1] <- "chr6"
+TE[TE[,1]=="Csco_scaffold_7",1] <- "chr7"
+TE[TE[,1]=="Csco_scaffold_8",1] <- "chr8"
+TE[TE[,1]=="Csco_scaffold_9",1] <- "chr9"
+TE[TE[,1]=="Csco_scaffold_10",1] <- "chr10"
+TE[TE[,1]=="Csco_scaffold_11",1] <- "chr11"
+TE[TE[,1]=="Csco_scaffold_12",1] <- "chr12"
+TE[TE[,1]=="Csco_scaffold_13",1] <- "chr13"
+TE[TE[,1]=="Csco_scaffold_14",1] <- "chr14"
+TE[TE[,1]=="Csco_scaffold_15",1] <- "chr15"
+TE[TE[,1]=="Csco_scaffold_16",1] <- "chr16"
+TE[TE[,1]=="Csco_scaffold_17",1] <- "chr17"
+TE[TE[,1]=="Csco_scaffold_18",1] <- "chr18"
+TE[TE[,1]=="Csco_scaffold_19",1] <- "chr19"
+TE[TE[,1]=="Csco_scaffold_20",1] <- "chr20"
+TE[TE[,1]=="Csco_scaffold_21",1] <- "chr21"
+TE[TE[,1]=="Csco_scaffold_22",1] <- "chr22"
+TE[TE[,1]=="Csco_scaffold_23",1] <- "chr23"
+TE[TE[,1]=="Csco_scaffold_24",1] <- "chr24"
+TE[TE[,1]=="Csco_scaffold_25",1] <- "chr25"
+TE[TE[,1]=="Csco_scaffold_26",1] <- "chr26"
+TE[TE[,1]=="Csco_scaffold_27",1] <- "chr27"
+TE[TE[,1]=="Csco_scaffold_28",1] <- "chr28"
+TE[TE[,1]=="Csco_scaffold_29",1] <- "chr29"
+TE[TE[,1]=="Csco_scaffold_30",1] <- "chr30"
+TE[TE[,1]=="Csco_scaffold_31",1] <- "chr31"
+TE[TE[,1]=="Csco_scaffold_32",1] <- "chr32"
+TE[TE[,1]=="Csco_scaffold_33",1] <- "chr33"
+colnames(TE) <- c("Chromosome", "Start", "End")
+
+TE_1 <- TE[TE$Chromosome=="chr1",]
+TE_1
+TE_2 <- TE[TE$Chromosome=="chr2",]
+TE_2
+TE_3 <- TE[TE$Chromosome=="chr3",]
+TE_3
+TE_4 <- TE[TE$Chromosome=="chr4",]
+TE_4
+TE_5 <- TE[TE$Chromosome=="chr5",]
+TE_5
+TE_6 <- TE[TE$Chromosome=="chr6",]
+TE_6
+TE_7 <- TE[TE$Chromosome=="chr7",]
+TE_7
+TE_8 <- TE[TE$Chromosome=="chr8",]
+TE_8
+TE_9 <- TE[TE$Chromosome=="chr9",]
+TE_9
+TE_10 <- TE[TE$Chromosome=="chr10",]
+TE_10
+TE_11 <- TE[TE$Chromosome=="chr11",]
+TE_11
+TE_12 <- TE[TE$Chromosome=="chr12",]
+TE_12
+TE_13 <- TE[TE$Chromosome=="chr13",]
+TE_13
+TE_14 <- TE[TE$Chromosome=="chr14",]
+TE_14
+TE_15 <- TE[TE$Chromosome=="chr15",]
+TE_15
+TE_16 <- TE[TE$Chromosome=="chr16",]
+TE_16
+TE_17 <- TE[TE$Chromosome=="chr17",]
+TE_17
+TE_18 <- TE[TE$Chromosome=="chr18",]
+TE_18
+TE_19 <- TE[TE$Chromosome=="chr19",]
+TE_19
+TE_20 <- TE[TE$Chromosome=="chr20",]
+TE_20
+TE_21 <- TE[TE$Chromosome=="chr21",]
+TE_21
+TE_22 <- TE[TE$Chromosome=="chr22",]
+TE_22
+TE_23 <- TE[TE$Chromosome=="chr23",]
+TE_23
+TE_24 <- TE[TE$Chromosome=="chr24",]
+TE_24
+TE_25 <- TE[TE$Chromosome=="chr25",]
+TE_25
+TE_26 <- TE[TE$Chromosome=="chr26",]
+TE_26
+TE_27 <- TE[TE$Chromosome=="chr27",]
+TE_27
+TE_28 <- TE[TE$Chromosome=="chr28",]
+TE_28
+TE_29 <- TE[TE$Chromosome=="chr29",]
+TE_29
+TE_30 <- TE[TE$Chromosome=="chr30",]
+TE_30
+TE_31 <- TE[TE$Chromosome=="chr31",]
+TE_31
+TE_32 <- TE[TE$Chromosome=="chr32",]
+TE_32
+TE_33 <- TE[TE$Chromosome=="chr33",]
+TE_33
+
+genomeblocksTE_1d <- genomeblocksBCR(outblock1, TE_1)
+genomeblocksTE_1d
+genomeblocksTE_2d <- genomeblocksBCR(outblock2, TE_2)
+genomeblocksTE_2d
+genomeblocksTE_3d <- genomeblocksBCR(outblock3, TE_3)
+genomeblocksTE_3d
+genomeblocksTE_4d <- genomeblocksBCR(outblock4, TE_4)
+genomeblocksTE_4d
+genomeblocksTE_5d <- genomeblocksBCR(outblock5, TE_5)
+genomeblocksTE_5d
+genomeblocksTE_6d <- genomeblocksBCR(outblock6, TE_6)
+genomeblocksTE_6d
+genomeblocksTE_7d <- genomeblocksBCR(outblock7, TE_7)
+genomeblocksTE_7d
+genomeblocksTE_8d <- genomeblocksBCR(outblock8, TE_8)
+genomeblocksTE_8d
+genomeblocksTE_9d <- genomeblocksBCR(outblock9, TE_9)
+genomeblocksTE_9d
+genomeblocksTE_10d <- genomeblocksBCR(outblock10, TE_10)
+genomeblocksTE_10d
+genomeblocksTE_11d <- genomeblocksBCR(outblock11, TE_11)
+genomeblocksTE_11d
+genomeblocksTE_12d <- genomeblocksBCR(outblock12, TE_12)
+genomeblocksTE_12d
+genomeblocksTE_13d <- genomeblocksBCR(outblock13, TE_13)
+genomeblocksTE_13d
+genomeblocksTE_14d <- genomeblocksBCR(outblock14, TE_14)
+genomeblocksTE_14d
+genomeblocksTE_15d <- genomeblocksBCR(outblock15, TE_15)
+genomeblocksTE_15d
+genomeblocksTE_16d <- genomeblocksBCR(outblock16, TE_16)
+genomeblocksTE_16d
+genomeblocksTE_17d <- genomeblocksBCR(outblock17, TE_17)
+genomeblocksTE_17d
+genomeblocksTE_18d <- genomeblocksBCR(outblock18, TE_18)
+genomeblocksTE_18d
+genomeblocksTE_19d <- genomeblocksBCR(outblock19, TE_19)
+genomeblocksTE_19d
+genomeblocksTE_20d <- genomeblocksBCR(outblock20, TE_20)
+genomeblocksTE_20d
+genomeblocksTE_21d <- genomeblocksBCR(outblock21, TE_21)
+genomeblocksTE_21d
+genomeblocksTE_22d <- genomeblocksBCR(outblock22, TE_22)
+genomeblocksTE_22d
+genomeblocksTE_23d <- genomeblocksBCR(outblock23, TE_23)
+genomeblocksTE_23d
+genomeblocksTE_24d <- genomeblocksBCR(outblock24, TE_24)
+genomeblocksTE_24d
+genomeblocksTE_25d <- genomeblocksBCR(outblock25, TE_25)
+genomeblocksTE_25d
+genomeblocksTE_26d <- genomeblocksBCR(outblock26, TE_26)
+genomeblocksTE_26d
+genomeblocksTE_27d <- genomeblocksBCR(outblock27, TE_27)
+genomeblocksTE_27d
+genomeblocksTE_28d <- genomeblocksBCR(outblock28, TE_28)
+genomeblocksTE_28d
+genomeblocksTE_29d <- genomeblocksBCR(outblock29, TE_29)
+genomeblocksTE_29d
+genomeblocksTE_30d <- genomeblocksBCR(outblock30, TE_30)
+genomeblocksTE_30d
+genomeblocksTE_31d <- genomeblocksBCR(outblock31, TE_31)
+genomeblocksTE_31d
+genomeblocksTE_32d <- genomeblocksBCR(outblock32, TE_32)
+genomeblocksTE_32d
+genomeblocksTE_33d <- genomeblocksBCR(outblock33, TE_33)
+genomeblocksTE_33d
+
+
+genomeblocksTE_alld <- rbind(genomeblocksTE_1d,genomeblocksTE_2d,genomeblocksTE_3d,genomeblocksTE_4d,genomeblocksTE_5d,genomeblocksTE_6d,genomeblocksTE_7d,genomeblocksTE_8d,genomeblocksTE_9d,genomeblocksTE_10d,genomeblocksTE_11d,genomeblocksTE_12d,genomeblocksTE_13d,genomeblocksTE_14d,genomeblocksTE_15d,genomeblocksTE_16d,genomeblocksTE_17d,genomeblocksTE_18d,genomeblocksTE_19d,genomeblocksTE_20d,genomeblocksTE_21d,genomeblocksTE_22d,genomeblocksTE_23d,genomeblocksTE_24d,genomeblocksTE_25d,genomeblocksTE_26d,genomeblocksTE_27d,genomeblocksTE_28d,genomeblocksTE_29d,genomeblocksTE_30d,genomeblocksTE_31d,genomeblocksTE_32d,genomeblocksTE_33d)
+
+length(genomeblocksTE_alld[,4][genomeblocksTE_alld[,4] == "conserved"])
+length(genomeblocksTE_alld[,4][genomeblocksTE_alld[,4] == "fisfus"])
+length(genomeblocksTE_alld[,4][genomeblocksTE_alld[,4] == "singlemarker"])
+
+mean(as.numeric(genomeblocksTE_alld[,5][genomeblocksTE_alld[,4] == "conserved"]))
+mean(as.numeric(genomeblocksTE_alld[,5][genomeblocksTE_alld[,4] == "fisfus"]))
+mean(as.numeric(genomeblocksTE_alld[,5][genomeblocksTE_alld[,4] == "singlemarker"]))
+
+sd(as.numeric(genomeblocksTE_alld[,5][genomeblocksTE_alld[,4] == "conserved"]))
+sd(as.numeric(genomeblocksTE_alld[,5][genomeblocksTE_alld[,4] == "fisfus"]))
+sd(as.numeric(genomeblocksTE_alld[,5][genomeblocksTE_alld[,4] == "singlemarker"]))
+
+dim(genomeblocksTE_alld)
+dim(genomeblocksTE_alld[genomeblocksTE_alld[,4] != "singlemarker", ])
+
+dim(genomeblocksGenesall)
+dim(genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", ])
+
+glm_genomeblocks_alld <- genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", -c(2:4)]
+
+glm_genomeblocks_alld <- cbind(glm_genomeblocks_alld,genomeblocksTE_alld[genomeblocksTE_alld[,4] != "singlemarker", 5])
+
+glm_genomeblocks_alld[,2][glm_genomeblocks_alld[,2]=="conserved"] <- 0
+glm_genomeblocks_alld[,2][glm_genomeblocks_alld[,2]=="fisfus"] <- 1
+
+library(lme4)
+glm_genomeblocks_alld<- data.frame (glm_genomeblocks_alld)
+colnames(glm_genomeblocks_alld) <- c("chromosome", "type", "BCR",  "GC", "Genes", "TE")
+fittedModel <- glmer (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + as.numeric(TE) + (1|chromosome), data = glm_genomeblocks_alld, family = binomial(link = "logit"))
+summary(fittedModel)
+
+fittedModel2 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + as.numeric(TE), family = binomial(link = "logit"), data = glm_genomeblocks_alld)
+summary(fittedModel2)
+
+fittedModel3 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + as.numeric(TE), family = gaussian(link = "identity"), data = glm_genomeblocks_alld)
+summary(fittedModel3)
+
+fittedModel4 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes)+ as.numeric(Genes), family = poisson(link = "log"), data = glm_genomeblocks_alld)
+summary(fittedModel4)
+
+library(DHARMa)
+
+simulationOutput <- simulateResiduals(fittedModel = fittedModel, plot = F)
+plot(simulationOutput)
+
+simulationOutput2 <- simulateResiduals(fittedModel = fittedModel2, plot = F)
+plot(simulationOutput2)
+
+simulationOutput3 <- simulateResiduals(fittedModel = fittedModel3, plot = F)
+plot(simulationOutput3)
+
+simulationOutput4 <- simulateResiduals(fittedModel = fittedModel4, plot = F)
+plot(simulationOutput4)
+
+```
+
+Adding the analysis of SatDNA
+
+```{r}
+satDNA <- read.table("Cscoparia_v1.0.DNA_CenDNA.gff", sep = "\t")
+satDNA
+satDNA <- satDNA[,c(1,4,5)]
+satDNA
+satDNA[satDNA[,1]=="Csco_scaffold_1",1] <- "chr1"
+satDNA[satDNA[,1]=="Csco_scaffold_2",1] <- "chr2"
+satDNA[satDNA[,1]=="Csco_scaffold_3",1] <- "chr3"
+satDNA[satDNA[,1]=="Csco_scaffold_4",1] <- "chr4"
+satDNA[satDNA[,1]=="Csco_scaffold_5",1] <- "chr5"
+satDNA[satDNA[,1]=="Csco_scaffold_6",1] <- "chr6"
+satDNA[satDNA[,1]=="Csco_scaffold_7",1] <- "chr7"
+satDNA[satDNA[,1]=="Csco_scaffold_8",1] <- "chr8"
+satDNA[satDNA[,1]=="Csco_scaffold_9",1] <- "chr9"
+satDNA[satDNA[,1]=="Csco_scaffold_10",1] <- "chr10"
+satDNA[satDNA[,1]=="Csco_scaffold_11",1] <- "chr11"
+satDNA[satDNA[,1]=="Csco_scaffold_12",1] <- "chr12"
+satDNA[satDNA[,1]=="Csco_scaffold_13",1] <- "chr13"
+satDNA[satDNA[,1]=="Csco_scaffold_14",1] <- "chr14"
+satDNA[satDNA[,1]=="Csco_scaffold_15",1] <- "chr15"
+satDNA[satDNA[,1]=="Csco_scaffold_16",1] <- "chr16"
+satDNA[satDNA[,1]=="Csco_scaffold_17",1] <- "chr17"
+satDNA[satDNA[,1]=="Csco_scaffold_18",1] <- "chr18"
+satDNA[satDNA[,1]=="Csco_scaffold_19",1] <- "chr19"
+satDNA[satDNA[,1]=="Csco_scaffold_20",1] <- "chr20"
+satDNA[satDNA[,1]=="Csco_scaffold_21",1] <- "chr21"
+satDNA[satDNA[,1]=="Csco_scaffold_22",1] <- "chr22"
+satDNA[satDNA[,1]=="Csco_scaffold_23",1] <- "chr23"
+satDNA[satDNA[,1]=="Csco_scaffold_24",1] <- "chr24"
+satDNA[satDNA[,1]=="Csco_scaffold_25",1] <- "chr25"
+satDNA[satDNA[,1]=="Csco_scaffold_26",1] <- "chr26"
+satDNA[satDNA[,1]=="Csco_scaffold_27",1] <- "chr27"
+satDNA[satDNA[,1]=="Csco_scaffold_28",1] <- "chr28"
+satDNA[satDNA[,1]=="Csco_scaffold_29",1] <- "chr29"
+satDNA[satDNA[,1]=="Csco_scaffold_30",1] <- "chr30"
+satDNA[satDNA[,1]=="Csco_scaffold_31",1] <- "chr31"
+satDNA[satDNA[,1]=="Csco_scaffold_32",1] <- "chr32"
+satDNA[satDNA[,1]=="Csco_scaffold_33",1] <- "chr33"
+colnames(satDNA) <- c("Chromosome", "Start", "End")
+
+satDNA_1 <- satDNA[satDNA$Chromosome=="chr1",]
+satDNA_1
+satDNA_2 <- satDNA[satDNA$Chromosome=="chr2",]
+satDNA_2
+satDNA_3 <- satDNA[satDNA$Chromosome=="chr3",]
+satDNA_3
+satDNA_4 <- satDNA[satDNA$Chromosome=="chr4",]
+satDNA_4
+satDNA_5 <- satDNA[satDNA$Chromosome=="chr5",]
+satDNA_5
+satDNA_6 <- satDNA[satDNA$Chromosome=="chr6",]
+satDNA_6
+satDNA_7 <- satDNA[satDNA$Chromosome=="chr7",]
+satDNA_7
+satDNA_8 <- satDNA[satDNA$Chromosome=="chr8",]
+satDNA_8
+satDNA_9 <- satDNA[satDNA$Chromosome=="chr9",]
+satDNA_9
+satDNA_10 <- satDNA[satDNA$Chromosome=="chr10",]
+satDNA_10
+satDNA_11 <- satDNA[satDNA$Chromosome=="chr11",]
+satDNA_11
+satDNA_12 <- satDNA[satDNA$Chromosome=="chr12",]
+satDNA_12
+satDNA_13 <- satDNA[satDNA$Chromosome=="chr13",]
+satDNA_13
+satDNA_14 <- satDNA[satDNA$Chromosome=="chr14",]
+satDNA_14
+satDNA_15 <- satDNA[satDNA$Chromosome=="chr15",]
+satDNA_15
+satDNA_16 <- satDNA[satDNA$Chromosome=="chr16",]
+satDNA_16
+satDNA_17 <- satDNA[satDNA$Chromosome=="chr17",]
+satDNA_17
+satDNA_18 <- satDNA[satDNA$Chromosome=="chr18",]
+satDNA_18
+satDNA_19 <- satDNA[satDNA$Chromosome=="chr19",]
+satDNA_19
+satDNA_20 <- satDNA[satDNA$Chromosome=="chr20",]
+satDNA_20
+satDNA_21 <- satDNA[satDNA$Chromosome=="chr21",]
+satDNA_21
+satDNA_22 <- satDNA[satDNA$Chromosome=="chr22",]
+satDNA_22
+satDNA_23 <- satDNA[satDNA$Chromosome=="chr23",]
+satDNA_23
+satDNA_24 <- satDNA[satDNA$Chromosome=="chr24",]
+satDNA_24
+satDNA_25 <- satDNA[satDNA$Chromosome=="chr25",]
+satDNA_25
+satDNA_26 <- satDNA[satDNA$Chromosome=="chr26",]
+satDNA_26
+satDNA_27 <- satDNA[satDNA$Chromosome=="chr27",]
+satDNA_27
+satDNA_28 <- satDNA[satDNA$Chromosome=="chr28",]
+satDNA_28
+satDNA_29 <- satDNA[satDNA$Chromosome=="chr29",]
+satDNA_29
+satDNA_30 <- satDNA[satDNA$Chromosome=="chr30",]
+satDNA_30
+satDNA_31 <- satDNA[satDNA$Chromosome=="chr31",]
+satDNA_31
+satDNA_32 <- satDNA[satDNA$Chromosome=="chr32",]
+satDNA_32
+satDNA_33 <- satDNA[satDNA$Chromosome=="chr33",]
+satDNA_33
+
+genomeblockssatDNA_1d <- genomeblocksBCR(outblock1, satDNA_1)
+genomeblockssatDNA_1d
+genomeblockssatDNA_2d <- genomeblocksBCR(outblock2, satDNA_2)
+genomeblockssatDNA_2d
+genomeblockssatDNA_3d <- genomeblocksBCR(outblock3, satDNA_3)
+genomeblockssatDNA_3d
+genomeblockssatDNA_4d <- genomeblocksBCR(outblock4, satDNA_4)
+genomeblockssatDNA_4d
+genomeblockssatDNA_5d <- genomeblocksBCR(outblock5, satDNA_5)
+genomeblockssatDNA_5d
+genomeblockssatDNA_6d <- genomeblocksBCR(outblock6, satDNA_6)
+genomeblockssatDNA_6d
+genomeblockssatDNA_7d <- genomeblocksBCR(outblock7, satDNA_7)
+genomeblockssatDNA_7d
+genomeblockssatDNA_8d <- genomeblocksBCR(outblock8, satDNA_8)
+genomeblockssatDNA_8d
+genomeblockssatDNA_9d <- genomeblocksBCR(outblock9, satDNA_9)
+genomeblockssatDNA_9d
+genomeblockssatDNA_10d <- genomeblocksBCR(outblock10, satDNA_10)
+genomeblockssatDNA_10d
+genomeblockssatDNA_11d <- genomeblocksBCR(outblock11, satDNA_11)
+genomeblockssatDNA_11d
+genomeblockssatDNA_12d <- genomeblocksBCR(outblock12, satDNA_12)
+genomeblockssatDNA_12d
+genomeblockssatDNA_13d <- genomeblocksBCR(outblock13, satDNA_13)
+genomeblockssatDNA_13d
+genomeblockssatDNA_14d <- genomeblocksBCR(outblock14, satDNA_14)
+genomeblockssatDNA_14d
+genomeblockssatDNA_15d <- genomeblocksBCR(outblock15, satDNA_15)
+genomeblockssatDNA_15d
+genomeblockssatDNA_16d <- genomeblocksBCR(outblock16, satDNA_16)
+genomeblockssatDNA_16d
+genomeblockssatDNA_17d <- genomeblocksBCR(outblock17, satDNA_17)
+genomeblockssatDNA_17d
+genomeblockssatDNA_18d <- genomeblocksBCR(outblock18, satDNA_18)
+genomeblockssatDNA_18d
+genomeblockssatDNA_19d <- genomeblocksBCR(outblock19, satDNA_19)
+genomeblockssatDNA_19d
+genomeblockssatDNA_20d <- genomeblocksBCR(outblock20, satDNA_20)
+genomeblockssatDNA_20d
+genomeblockssatDNA_21d <- genomeblocksBCR(outblock21, satDNA_21)
+genomeblockssatDNA_21d
+genomeblockssatDNA_22d <- genomeblocksBCR(outblock22, satDNA_22)
+genomeblockssatDNA_22d
+genomeblockssatDNA_23d <- genomeblocksBCR(outblock23, satDNA_23)
+genomeblockssatDNA_23d
+genomeblockssatDNA_24d <- genomeblocksBCR(outblock24, satDNA_24)
+genomeblockssatDNA_24d
+genomeblockssatDNA_25d <- genomeblocksBCR(outblock25, satDNA_25)
+genomeblockssatDNA_25d
+genomeblockssatDNA_26d <- genomeblocksBCR(outblock26, satDNA_26)
+genomeblockssatDNA_26d
+genomeblockssatDNA_27d <- genomeblocksBCR(outblock27, satDNA_27)
+genomeblockssatDNA_27d
+genomeblockssatDNA_28d <- genomeblocksBCR(outblock28, satDNA_28)
+genomeblockssatDNA_28d
+genomeblockssatDNA_29d <- genomeblocksBCR(outblock29, satDNA_29)
+genomeblockssatDNA_29d
+genomeblockssatDNA_30d <- genomeblocksBCR(outblock30, satDNA_30)
+genomeblockssatDNA_30d
+genomeblockssatDNA_31d <- genomeblocksBCR(outblock31, satDNA_31)
+genomeblockssatDNA_31d
+genomeblockssatDNA_32d <- genomeblocksBCR(outblock32, satDNA_32)
+genomeblockssatDNA_32d
+genomeblockssatDNA_33d <- genomeblocksBCR(outblock33, satDNA_33)
+genomeblockssatDNA_33d
+
+genomeblockssatDNA_alld <- rbind(genomeblockssatDNA_1d,genomeblockssatDNA_2d,genomeblockssatDNA_3d,genomeblockssatDNA_4d,genomeblockssatDNA_5d,genomeblockssatDNA_6d,genomeblockssatDNA_7d,genomeblockssatDNA_8d,genomeblockssatDNA_9d,genomeblockssatDNA_10d,genomeblockssatDNA_11d,genomeblockssatDNA_12d,genomeblockssatDNA_13d,genomeblockssatDNA_14d,genomeblockssatDNA_15d,genomeblockssatDNA_16d,genomeblockssatDNA_17d,genomeblockssatDNA_18d,genomeblockssatDNA_19d,genomeblockssatDNA_20d,genomeblockssatDNA_21d,genomeblockssatDNA_22d,genomeblockssatDNA_23d,genomeblockssatDNA_24d,genomeblockssatDNA_25d,genomeblockssatDNA_26d,genomeblockssatDNA_27d,genomeblockssatDNA_28d,genomeblockssatDNA_29d,genomeblockssatDNA_30d,genomeblockssatDNA_31d,genomeblockssatDNA_32d,genomeblockssatDNA_33d)
+
+length(genomeblockssatDNA_alld[,4][genomeblockssatDNA_alld[,4] == "conserved"])
+length(genomeblockssatDNA_alld[,4][genomeblockssatDNA_alld[,4] == "fisfus"])
+length(genomeblockssatDNA_alld[,4][genomeblockssatDNA_alld[,4] == "singlemarker"])
+
+mean(as.numeric(genomeblockssatDNA_alld[,5][genomeblockssatDNA_alld[,4] == "conserved"]))
+mean(as.numeric(genomeblockssatDNA_alld[,5][genomeblockssatDNA_alld[,4] == "fisfus"]))
+mean(as.numeric(genomeblockssatDNA_alld[,5][genomeblockssatDNA_alld[,4] == "singlemarker"]))
+
+sd(as.numeric(genomeblockssatDNA_alld[,5][genomeblockssatDNA_alld[,4] == "conserved"]))
+sd(as.numeric(genomeblockssatDNA_alld[,5][genomeblockssatDNA_alld[,4] == "fisfus"]))
+sd(as.numeric(genomeblockssatDNA_alld[,5][genomeblockssatDNA_alld[,4] == "singlemarker"]))
+
+dim(genomeblockssatDNA_alld)
+dim(genomeblockssatDNA_alld[genomeblockssatDNA_alld[,4] != "singlemarker", ])
+
+dim(genomeblocksGenesall)
+dim(genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", ])
+
+glm_genomeblocks_alld <- genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", -c(2:4)]
+
+glm_genomeblocks_alld <- cbind(glm_genomeblocks_alld,genomeblocksTE_alld[genomeblocksTE_alld[,4] != "singlemarker", 5],genomeblockssatDNA_alld[genomeblockssatDNA_alld[,4] != "singlemarker", 5])
+
+glm_genomeblocks_alld[,2][glm_genomeblocks_alld[,2]=="conserved"] <- 0
+glm_genomeblocks_alld[,2][glm_genomeblocks_alld[,2]=="fisfus"] <- 1
+
+library(lme4)
+glm_genomeblocks_alld<- data.frame (glm_genomeblocks_alld)
+colnames(glm_genomeblocks_alld) <- c("chromosome", "type", "BCR",  "GC", "Genes", "TE", "satDNA")
+fittedModel <- glmer (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + as.numeric(TE) + as.numeric(satDNA) + (1|chromosome), data = glm_genomeblocks_alld, family = binomial(link = "logit"))
+summary(fittedModel)
+
+fittedModel2 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + as.numeric(TE) + as.numeric(satDNA), family = binomial(link = "logit"), data = glm_genomeblocks_alld)
+summary(fittedModel2)
+
+fittedModel3 <- glm (as.numeric(type) ~ as.numeric(BCR) +  as.numeric(Genes) + as.numeric(TE)+ as.numeric(satDNA), family = gaussian(link = "identity"), data = glm_genomeblocks_alld)
+summary(fittedModel3)
+
+fittedModel4 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes)+ as.numeric(TE) + as.numeric(satDNA), family = poisson(link = "log"), data = glm_genomeblocks_alld)
+summary(fittedModel4)
+
+library(DHARMa)
+
+simulationOutput <- simulateResiduals(fittedModel = fittedModel, plot = F)
+plot(simulationOutput)
+
+simulationOutput2 <- simulateResiduals(fittedModel = fittedModel2, plot = F)
+plot(simulationOutput2)
+
+simulationOutput3 <- simulateResiduals(fittedModel = fittedModel3, plot = F)
+plot(simulationOutput3)
+
+simulationOutput4 <- simulateResiduals(fittedModel = fittedModel4, plot = F)
+plot(simulationOutput4)
+```
+
+Now we are goint to test different types of TEs. First class_II.
+
+```{r}
+
+gypsy <- read.table("Cscoparia_v1.0.DNA_Ty3-Gypsy.gff", sep = "\t")
+gypsy
+gypsy <- gypsy[,c(1,4,5)]
+gypsy
+gypsy[gypsy[,1]=="Csco_scaffold_1",1] <- "chr1"
+gypsy[gypsy[,1]=="Csco_scaffold_2",1] <- "chr2"
+gypsy[gypsy[,1]=="Csco_scaffold_3",1] <- "chr3"
+gypsy[gypsy[,1]=="Csco_scaffold_4",1] <- "chr4"
+gypsy[gypsy[,1]=="Csco_scaffold_5",1] <- "chr5"
+gypsy[gypsy[,1]=="Csco_scaffold_6",1] <- "chr6"
+gypsy[gypsy[,1]=="Csco_scaffold_7",1] <- "chr7"
+gypsy[gypsy[,1]=="Csco_scaffold_8",1] <- "chr8"
+gypsy[gypsy[,1]=="Csco_scaffold_9",1] <- "chr9"
+gypsy[gypsy[,1]=="Csco_scaffold_10",1] <- "chr10"
+gypsy[gypsy[,1]=="Csco_scaffold_11",1] <- "chr11"
+gypsy[gypsy[,1]=="Csco_scaffold_12",1] <- "chr12"
+gypsy[gypsy[,1]=="Csco_scaffold_13",1] <- "chr13"
+gypsy[gypsy[,1]=="Csco_scaffold_14",1] <- "chr14"
+gypsy[gypsy[,1]=="Csco_scaffold_15",1] <- "chr15"
+gypsy[gypsy[,1]=="Csco_scaffold_16",1] <- "chr16"
+gypsy[gypsy[,1]=="Csco_scaffold_17",1] <- "chr17"
+gypsy[gypsy[,1]=="Csco_scaffold_18",1] <- "chr18"
+gypsy[gypsy[,1]=="Csco_scaffold_19",1] <- "chr19"
+gypsy[gypsy[,1]=="Csco_scaffold_20",1] <- "chr20"
+gypsy[gypsy[,1]=="Csco_scaffold_21",1] <- "chr21"
+gypsy[gypsy[,1]=="Csco_scaffold_22",1] <- "chr22"
+gypsy[gypsy[,1]=="Csco_scaffold_23",1] <- "chr23"
+gypsy[gypsy[,1]=="Csco_scaffold_24",1] <- "chr24"
+gypsy[gypsy[,1]=="Csco_scaffold_25",1] <- "chr25"
+gypsy[gypsy[,1]=="Csco_scaffold_26",1] <- "chr26"
+gypsy[gypsy[,1]=="Csco_scaffold_27",1] <- "chr27"
+gypsy[gypsy[,1]=="Csco_scaffold_28",1] <- "chr28"
+gypsy[gypsy[,1]=="Csco_scaffold_29",1] <- "chr29"
+gypsy[gypsy[,1]=="Csco_scaffold_30",1] <- "chr30"
+gypsy[gypsy[,1]=="Csco_scaffold_31",1] <- "chr31"
+gypsy[gypsy[,1]=="Csco_scaffold_32",1] <- "chr32"
+gypsy[gypsy[,1]=="Csco_scaffold_33",1] <- "chr33"
+colnames(gypsy) <- c("Chromosome", "Start", "End")
+
+gypsy_1 <- gypsy[gypsy$Chromosome=="chr1",]
+gypsy_1
+gypsy_2 <- gypsy[gypsy$Chromosome=="chr2",]
+gypsy_2
+gypsy_3 <- gypsy[gypsy$Chromosome=="chr3",]
+gypsy_3
+gypsy_4 <- gypsy[gypsy$Chromosome=="chr4",]
+gypsy_4
+gypsy_5 <- gypsy[gypsy$Chromosome=="chr5",]
+gypsy_5
+gypsy_6 <- gypsy[gypsy$Chromosome=="chr6",]
+gypsy_6
+gypsy_7 <- gypsy[gypsy$Chromosome=="chr7",]
+gypsy_7
+gypsy_8 <- gypsy[gypsy$Chromosome=="chr8",]
+gypsy_8
+gypsy_9 <- gypsy[gypsy$Chromosome=="chr9",]
+gypsy_9
+gypsy_10 <- gypsy[gypsy$Chromosome=="chr10",]
+gypsy_10
+gypsy_11 <- gypsy[gypsy$Chromosome=="chr11",]
+gypsy_11
+gypsy_12 <- gypsy[gypsy$Chromosome=="chr12",]
+gypsy_12
+gypsy_13 <- gypsy[gypsy$Chromosome=="chr13",]
+gypsy_13
+gypsy_14 <- gypsy[gypsy$Chromosome=="chr14",]
+gypsy_14
+gypsy_15 <- gypsy[gypsy$Chromosome=="chr15",]
+gypsy_15
+gypsy_16 <- gypsy[gypsy$Chromosome=="chr16",]
+gypsy_16
+gypsy_17 <- gypsy[gypsy$Chromosome=="chr17",]
+gypsy_17
+gypsy_18 <- gypsy[gypsy$Chromosome=="chr18",]
+gypsy_18
+gypsy_19 <- gypsy[gypsy$Chromosome=="chr19",]
+gypsy_19
+gypsy_20 <- gypsy[gypsy$Chromosome=="chr20",]
+gypsy_20
+gypsy_21 <- gypsy[gypsy$Chromosome=="chr21",]
+gypsy_21
+gypsy_22 <- gypsy[gypsy$Chromosome=="chr22",]
+gypsy_22
+gypsy_23 <- gypsy[gypsy$Chromosome=="chr23",]
+gypsy_23
+gypsy_24 <- gypsy[gypsy$Chromosome=="chr24",]
+gypsy_24
+gypsy_25 <- gypsy[gypsy$Chromosome=="chr25",]
+gypsy_25
+gypsy_26 <- gypsy[gypsy$Chromosome=="chr26",]
+gypsy_26
+gypsy_27 <- gypsy[gypsy$Chromosome=="chr27",]
+gypsy_27
+gypsy_28 <- gypsy[gypsy$Chromosome=="chr28",]
+gypsy_28
+gypsy_29 <- gypsy[gypsy$Chromosome=="chr29",]
+gypsy_29
+gypsy_30 <- gypsy[gypsy$Chromosome=="chr30",]
+gypsy_30
+gypsy_31 <- gypsy[gypsy$Chromosome=="chr31",]
+gypsy_31
+gypsy_32 <- gypsy[gypsy$Chromosome=="chr32",]
+gypsy_32
+gypsy_33 <- gypsy[gypsy$Chromosome=="chr33",]
+gypsy_33
+
+genomeblocksgypsy_1d <- genomeblocksBCR(outblock1, gypsy_1)
+genomeblocksgypsy_1d
+genomeblocksgypsy_2d <- genomeblocksBCR(outblock2, gypsy_2)
+genomeblocksgypsy_2d
+genomeblocksgypsy_3d <- genomeblocksBCR(outblock3, gypsy_3)
+genomeblocksgypsy_3d
+genomeblocksgypsy_4d <- genomeblocksBCR(outblock4, gypsy_4)
+genomeblocksgypsy_4d
+genomeblocksgypsy_5d <- genomeblocksBCR(outblock5, gypsy_5)
+genomeblocksgypsy_5d
+genomeblocksgypsy_6d <- genomeblocksBCR(outblock6, gypsy_6)
+genomeblocksgypsy_6d
+genomeblocksgypsy_7d <- genomeblocksBCR(outblock7, gypsy_7)
+genomeblocksgypsy_7d
+genomeblocksgypsy_8d <- genomeblocksBCR(outblock8, gypsy_8)
+genomeblocksgypsy_8d
+genomeblocksgypsy_9d <- genomeblocksBCR(outblock9, gypsy_9)
+genomeblocksgypsy_9d
+genomeblocksgypsy_10d <- genomeblocksBCR(outblock10, gypsy_10)
+genomeblocksgypsy_10d
+genomeblocksgypsy_11d <- genomeblocksBCR(outblock11, gypsy_11)
+genomeblocksgypsy_11d
+genomeblocksgypsy_12d <- genomeblocksBCR(outblock12, gypsy_12)
+genomeblocksgypsy_12d
+genomeblocksgypsy_13d <- genomeblocksBCR(outblock13, gypsy_13)
+genomeblocksgypsy_13d
+genomeblocksgypsy_14d <- genomeblocksBCR(outblock14, gypsy_14)
+genomeblocksgypsy_14d
+genomeblocksgypsy_15d <- genomeblocksBCR(outblock15, gypsy_15)
+genomeblocksgypsy_15d
+genomeblocksgypsy_16d <- genomeblocksBCR(outblock16, gypsy_16)
+genomeblocksgypsy_16d
+genomeblocksgypsy_17d <- genomeblocksBCR(outblock17, gypsy_17)
+genomeblocksgypsy_17d
+genomeblocksgypsy_18d <- genomeblocksBCR(outblock18, gypsy_18)
+genomeblocksgypsy_18d
+genomeblocksgypsy_19d <- genomeblocksBCR(outblock19, gypsy_19)
+genomeblocksgypsy_19d
+genomeblocksgypsy_20d <- genomeblocksBCR(outblock20, gypsy_20)
+genomeblocksgypsy_20d
+genomeblocksgypsy_21d <- genomeblocksBCR(outblock21, gypsy_21)
+genomeblocksgypsy_21d
+genomeblocksgypsy_22d <- genomeblocksBCR(outblock22, gypsy_22)
+genomeblocksgypsy_22d
+genomeblocksgypsy_23d <- genomeblocksBCR(outblock23, gypsy_23)
+genomeblocksgypsy_23d
+genomeblocksgypsy_24d <- genomeblocksBCR(outblock24, gypsy_24)
+genomeblocksgypsy_24d
+genomeblocksgypsy_25d <- genomeblocksBCR(outblock25, gypsy_25)
+genomeblocksgypsy_25d
+genomeblocksgypsy_26d <- genomeblocksBCR(outblock26, gypsy_26)
+genomeblocksgypsy_26d
+genomeblocksgypsy_27d <- genomeblocksBCR(outblock27, gypsy_27)
+genomeblocksgypsy_27d
+genomeblocksgypsy_28d <- genomeblocksBCR(outblock28, gypsy_28)
+genomeblocksgypsy_28d
+genomeblocksgypsy_29d <- genomeblocksBCR(outblock29, gypsy_29)
+genomeblocksgypsy_29d
+genomeblocksgypsy_30d <- genomeblocksBCR(outblock30, gypsy_30)
+genomeblocksgypsy_30d
+genomeblocksgypsy_31d <- genomeblocksBCR(outblock31, gypsy_31)
+genomeblocksgypsy_31d
+genomeblocksgypsy_32d <- genomeblocksBCR(outblock32, gypsy_32)
+genomeblocksgypsy_32d
+genomeblocksgypsy_33d <- genomeblocksBCR(outblock33, gypsy_33)
+genomeblocksgypsy_33d
+
+genomeblocksgypsy_alld <- rbind(genomeblocksgypsy_1d,genomeblocksgypsy_2d,genomeblocksgypsy_3d,genomeblocksgypsy_4d,genomeblocksgypsy_5d,genomeblocksgypsy_6d,genomeblocksgypsy_7d,genomeblocksgypsy_8d,genomeblocksgypsy_9d,genomeblocksgypsy_10d,genomeblocksgypsy_11d,genomeblocksgypsy_12d,genomeblocksgypsy_13d,genomeblocksgypsy_14d,genomeblocksgypsy_15d,genomeblocksgypsy_16d,genomeblocksgypsy_17d,genomeblocksgypsy_18d,genomeblocksgypsy_19d,genomeblocksgypsy_20d,genomeblocksgypsy_21d,genomeblocksgypsy_22d,genomeblocksgypsy_23d,genomeblocksgypsy_24d,genomeblocksgypsy_25d,genomeblocksgypsy_26d,genomeblocksgypsy_27d,genomeblocksgypsy_28d,genomeblocksgypsy_29d,genomeblocksgypsy_30d,genomeblocksgypsy_31d,genomeblocksgypsy_32d,genomeblocksgypsy_33d)
+
+length(genomeblocksgypsy_alld[,4][genomeblocksgypsy_alld[,4] == "conserved"])
+length(genomeblocksgypsy_alld[,4][genomeblocksgypsy_alld[,4] == "fisfus"])
+length(genomeblocksgypsy_alld[,4][genomeblocksgypsy_alld[,4] == "singlemarker"])
+
+mean(as.numeric(genomeblocksgypsy_alld[,5][genomeblocksgypsy_alld[,4] == "conserved"]))
+mean(as.numeric(genomeblocksgypsy_alld[,5][genomeblocksgypsy_alld[,4] == "fisfus"]))
+mean(as.numeric(genomeblocksgypsy_alld[,5][genomeblocksgypsy_alld[,4] == "singlemarker"]))
+
+sd(as.numeric(genomeblocksgypsy_alld[,5][genomeblocksgypsy_alld[,4] == "conserved"]))
+sd(as.numeric(genomeblocksgypsy_alld[,5][genomeblocksgypsy_alld[,4] == "fisfus"]))
+sd(as.numeric(genomeblocksgypsy_alld[,5][genomeblocksgypsy_alld[,4] == "singlemarker"]))
+
+dim(genomeblocksgypsy_alld)
+dim(genomeblocksgypsy_alld[genomeblocksgypsy_alld[,4] != "singlemarker", ])
+
+dim(genomeblocksGenesall)
+dim(genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", ])
+
+
+```
+
+
+
+Now we are goint to test different types of TEs. copia.
+
+```{r}
+
+copia <- read.table("Cscoparia_v1.0.DNA_Ty1-Copia.gff", sep = "\t")
+copia
+copia <- copia[,c(1,4,5)]
+copia
+copia[copia[,1]=="Csco_scaffold_1",1] <- "chr1"
+copia[copia[,1]=="Csco_scaffold_2",1] <- "chr2"
+copia[copia[,1]=="Csco_scaffold_3",1] <- "chr3"
+copia[copia[,1]=="Csco_scaffold_4",1] <- "chr4"
+copia[copia[,1]=="Csco_scaffold_5",1] <- "chr5"
+copia[copia[,1]=="Csco_scaffold_6",1] <- "chr6"
+copia[copia[,1]=="Csco_scaffold_7",1] <- "chr7"
+copia[copia[,1]=="Csco_scaffold_8",1] <- "chr8"
+copia[copia[,1]=="Csco_scaffold_9",1] <- "chr9"
+copia[copia[,1]=="Csco_scaffold_10",1] <- "chr10"
+copia[copia[,1]=="Csco_scaffold_11",1] <- "chr11"
+copia[copia[,1]=="Csco_scaffold_12",1] <- "chr12"
+copia[copia[,1]=="Csco_scaffold_13",1] <- "chr13"
+copia[copia[,1]=="Csco_scaffold_14",1] <- "chr14"
+copia[copia[,1]=="Csco_scaffold_15",1] <- "chr15"
+copia[copia[,1]=="Csco_scaffold_16",1] <- "chr16"
+copia[copia[,1]=="Csco_scaffold_17",1] <- "chr17"
+copia[copia[,1]=="Csco_scaffold_18",1] <- "chr18"
+copia[copia[,1]=="Csco_scaffold_19",1] <- "chr19"
+copia[copia[,1]=="Csco_scaffold_20",1] <- "chr20"
+copia[copia[,1]=="Csco_scaffold_21",1] <- "chr21"
+copia[copia[,1]=="Csco_scaffold_22",1] <- "chr22"
+copia[copia[,1]=="Csco_scaffold_23",1] <- "chr23"
+copia[copia[,1]=="Csco_scaffold_24",1] <- "chr24"
+copia[copia[,1]=="Csco_scaffold_25",1] <- "chr25"
+copia[copia[,1]=="Csco_scaffold_26",1] <- "chr26"
+copia[copia[,1]=="Csco_scaffold_27",1] <- "chr27"
+copia[copia[,1]=="Csco_scaffold_28",1] <- "chr28"
+copia[copia[,1]=="Csco_scaffold_29",1] <- "chr29"
+copia[copia[,1]=="Csco_scaffold_30",1] <- "chr30"
+copia[copia[,1]=="Csco_scaffold_31",1] <- "chr31"
+copia[copia[,1]=="Csco_scaffold_32",1] <- "chr32"
+copia[copia[,1]=="Csco_scaffold_33",1] <- "chr33"
+colnames(copia) <- c("Chromosome", "Start", "End")
+
+copia_1 <- copia[copia$Chromosome=="chr1",]
+copia_1
+copia_2 <- copia[copia$Chromosome=="chr2",]
+copia_2
+copia_3 <- copia[copia$Chromosome=="chr3",]
+copia_3
+copia_4 <- copia[copia$Chromosome=="chr4",]
+copia_4
+copia_5 <- copia[copia$Chromosome=="chr5",]
+copia_5
+copia_6 <- copia[copia$Chromosome=="chr6",]
+copia_6
+copia_7 <- copia[copia$Chromosome=="chr7",]
+copia_7
+copia_8 <- copia[copia$Chromosome=="chr8",]
+copia_8
+copia_9 <- copia[copia$Chromosome=="chr9",]
+copia_9
+copia_10 <- copia[copia$Chromosome=="chr10",]
+copia_10
+copia_11 <- copia[copia$Chromosome=="chr11",]
+copia_11
+copia_12 <- copia[copia$Chromosome=="chr12",]
+copia_12
+copia_13 <- copia[copia$Chromosome=="chr13",]
+copia_13
+copia_14 <- copia[copia$Chromosome=="chr14",]
+copia_14
+copia_15 <- copia[copia$Chromosome=="chr15",]
+copia_15
+copia_16 <- copia[copia$Chromosome=="chr16",]
+copia_16
+copia_17 <- copia[copia$Chromosome=="chr17",]
+copia_17
+copia_18 <- copia[copia$Chromosome=="chr18",]
+copia_18
+copia_19 <- copia[copia$Chromosome=="chr19",]
+copia_19
+copia_20 <- copia[copia$Chromosome=="chr20",]
+copia_20
+copia_21 <- copia[copia$Chromosome=="chr21",]
+copia_21
+copia_22 <- copia[copia$Chromosome=="chr22",]
+copia_22
+copia_23 <- copia[copia$Chromosome=="chr23",]
+copia_23
+copia_24 <- copia[copia$Chromosome=="chr24",]
+copia_24
+copia_25 <- copia[copia$Chromosome=="chr25",]
+copia_25
+copia_26 <- copia[copia$Chromosome=="chr26",]
+copia_26
+copia_27 <- copia[copia$Chromosome=="chr27",]
+copia_27
+copia_28 <- copia[copia$Chromosome=="chr28",]
+copia_28
+copia_29 <- copia[copia$Chromosome=="chr29",]
+copia_29
+copia_30 <- copia[copia$Chromosome=="chr30",]
+copia_30
+copia_31 <- copia[copia$Chromosome=="chr31",]
+copia_31
+copia_32 <- copia[copia$Chromosome=="chr32",]
+copia_32
+copia_33 <- copia[copia$Chromosome=="chr33",]
+copia_33
+
+genomeblockscopia_1d <- genomeblocksBCR(outblock1, copia_1)
+genomeblockscopia_1d
+genomeblockscopia_2d <- genomeblocksBCR(outblock2, copia_2)
+genomeblockscopia_2d
+genomeblockscopia_3d <- genomeblocksBCR(outblock3, copia_3)
+genomeblockscopia_3d
+genomeblockscopia_4d <- genomeblocksBCR(outblock4, copia_4)
+genomeblockscopia_4d
+genomeblockscopia_5d <- genomeblocksBCR(outblock5, copia_5)
+genomeblockscopia_5d
+genomeblockscopia_6d <- genomeblocksBCR(outblock6, copia_6)
+genomeblockscopia_6d
+genomeblockscopia_7d <- genomeblocksBCR(outblock7, copia_7)
+genomeblockscopia_7d
+genomeblockscopia_8d <- genomeblocksBCR(outblock8, copia_8)
+genomeblockscopia_8d
+genomeblockscopia_9d <- genomeblocksBCR(outblock9, copia_9)
+genomeblockscopia_9d
+genomeblockscopia_10d <- genomeblocksBCR(outblock10, copia_10)
+genomeblockscopia_10d
+genomeblockscopia_11d <- genomeblocksBCR(outblock11, copia_11)
+genomeblockscopia_11d
+genomeblockscopia_12d <- genomeblocksBCR(outblock12, copia_12)
+genomeblockscopia_12d
+genomeblockscopia_13d <- genomeblocksBCR(outblock13, copia_13)
+genomeblockscopia_13d
+genomeblockscopia_14d <- genomeblocksBCR(outblock14, copia_14)
+genomeblockscopia_14d
+genomeblockscopia_15d <- genomeblocksBCR(outblock15, copia_15)
+genomeblockscopia_15d
+genomeblockscopia_16d <- genomeblocksBCR(outblock16, copia_16)
+genomeblockscopia_16d
+genomeblockscopia_17d <- genomeblocksBCR(outblock17, copia_17)
+genomeblockscopia_17d
+genomeblockscopia_18d <- genomeblocksBCR(outblock18, copia_18)
+genomeblockscopia_18d
+genomeblockscopia_19d <- genomeblocksBCR(outblock19, copia_19)
+genomeblockscopia_19d
+genomeblockscopia_20d <- genomeblocksBCR(outblock20, copia_20)
+genomeblockscopia_20d
+genomeblockscopia_21d <- genomeblocksBCR(outblock21, copia_21)
+genomeblockscopia_21d
+genomeblockscopia_22d <- genomeblocksBCR(outblock22, copia_22)
+genomeblockscopia_22d
+genomeblockscopia_23d <- genomeblocksBCR(outblock23, copia_23)
+genomeblockscopia_23d
+genomeblockscopia_24d <- genomeblocksBCR(outblock24, copia_24)
+genomeblockscopia_24d
+genomeblockscopia_25d <- genomeblocksBCR(outblock25, copia_25)
+genomeblockscopia_25d
+genomeblockscopia_26d <- genomeblocksBCR(outblock26, copia_26)
+genomeblockscopia_26d
+genomeblockscopia_27d <- genomeblocksBCR(outblock27, copia_27)
+genomeblockscopia_27d
+genomeblockscopia_28d <- genomeblocksBCR(outblock28, copia_28)
+genomeblockscopia_28d
+genomeblockscopia_29d <- genomeblocksBCR(outblock29, copia_29)
+genomeblockscopia_29d
+genomeblockscopia_30d <- genomeblocksBCR(outblock30, copia_30)
+genomeblockscopia_30d
+genomeblockscopia_31d <- genomeblocksBCR(outblock31, copia_31)
+genomeblockscopia_31d
+genomeblockscopia_32d <- genomeblocksBCR(outblock32, copia_32)
+genomeblockscopia_32d
+genomeblockscopia_33d <- genomeblocksBCR(outblock33, copia_33)
+genomeblockscopia_33d
+
+genomeblockscopia_alld <- rbind(genomeblockscopia_1d,genomeblockscopia_2d,genomeblockscopia_3d,genomeblockscopia_4d,genomeblockscopia_5d,genomeblockscopia_6d,genomeblockscopia_7d,genomeblockscopia_8d,genomeblockscopia_9d,genomeblockscopia_10d,genomeblockscopia_11d,genomeblockscopia_12d,genomeblockscopia_13d,genomeblockscopia_14d,genomeblockscopia_15d,genomeblockscopia_16d,genomeblockscopia_17d,genomeblockscopia_18d,genomeblockscopia_19d,genomeblockscopia_20d,genomeblockscopia_21d,genomeblockscopia_22d,genomeblockscopia_23d,genomeblockscopia_24d,genomeblockscopia_25d,genomeblockscopia_26d,genomeblockscopia_27d,genomeblockscopia_28d,genomeblockscopia_29d,genomeblockscopia_30d,genomeblockscopia_31d,genomeblockscopia_32d,genomeblockscopia_33d)
+
+length(genomeblockscopia_alld[,4][genomeblockscopia_alld[,4] == "conserved"])
+length(genomeblockscopia_alld[,4][genomeblockscopia_alld[,4] == "fisfus"])
+length(genomeblockscopia_alld[,4][genomeblockscopia_alld[,4] == "singlemarker"])
+
+mean(as.numeric(genomeblockscopia_alld[,5][genomeblockscopia_alld[,4] == "conserved"]))
+mean(as.numeric(genomeblockscopia_alld[,5][genomeblockscopia_alld[,4] == "fisfus"]))
+mean(as.numeric(genomeblockscopia_alld[,5][genomeblockscopia_alld[,4] == "singlemarker"]))
+
+sd(as.numeric(genomeblockscopia_alld[,5][genomeblockscopia_alld[,4] == "conserved"]))
+sd(as.numeric(genomeblockscopia_alld[,5][genomeblockscopia_alld[,4] == "fisfus"]))
+sd(as.numeric(genomeblockscopia_alld[,5][genomeblockscopia_alld[,4] == "singlemarker"]))
+
+dim(genomeblockscopia_alld)
+dim(genomeblockscopia_alld[genomeblockscopia_alld[,4] != "singlemarker", ])
+
+dim(genomeblocksGenesall)
+dim(genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", ])
+
+
+```
+
+
+Now we are goint to test different types of TEs. non_LTR.
+
+```{r}
+
+non_LTR <- read.table("Cscoparia_v1.0.DNA_LINE.gff", sep = "\t")
+non_LTR
+non_LTR <- non_LTR[,c(1,4,5)]
+non_LTR
+non_LTR[non_LTR[,1]=="Csco_scaffold_1",1] <- "chr1"
+non_LTR[non_LTR[,1]=="Csco_scaffold_2",1] <- "chr2"
+non_LTR[non_LTR[,1]=="Csco_scaffold_3",1] <- "chr3"
+non_LTR[non_LTR[,1]=="Csco_scaffold_4",1] <- "chr4"
+non_LTR[non_LTR[,1]=="Csco_scaffold_5",1] <- "chr5"
+non_LTR[non_LTR[,1]=="Csco_scaffold_6",1] <- "chr6"
+non_LTR[non_LTR[,1]=="Csco_scaffold_7",1] <- "chr7"
+non_LTR[non_LTR[,1]=="Csco_scaffold_8",1] <- "chr8"
+non_LTR[non_LTR[,1]=="Csco_scaffold_9",1] <- "chr9"
+non_LTR[non_LTR[,1]=="Csco_scaffold_10",1] <- "chr10"
+non_LTR[non_LTR[,1]=="Csco_scaffold_11",1] <- "chr11"
+non_LTR[non_LTR[,1]=="Csco_scaffold_12",1] <- "chr12"
+non_LTR[non_LTR[,1]=="Csco_scaffold_13",1] <- "chr13"
+non_LTR[non_LTR[,1]=="Csco_scaffold_14",1] <- "chr14"
+non_LTR[non_LTR[,1]=="Csco_scaffold_15",1] <- "chr15"
+non_LTR[non_LTR[,1]=="Csco_scaffold_16",1] <- "chr16"
+non_LTR[non_LTR[,1]=="Csco_scaffold_17",1] <- "chr17"
+non_LTR[non_LTR[,1]=="Csco_scaffold_18",1] <- "chr18"
+non_LTR[non_LTR[,1]=="Csco_scaffold_19",1] <- "chr19"
+non_LTR[non_LTR[,1]=="Csco_scaffold_20",1] <- "chr20"
+non_LTR[non_LTR[,1]=="Csco_scaffold_21",1] <- "chr21"
+non_LTR[non_LTR[,1]=="Csco_scaffold_22",1] <- "chr22"
+non_LTR[non_LTR[,1]=="Csco_scaffold_23",1] <- "chr23"
+non_LTR[non_LTR[,1]=="Csco_scaffold_24",1] <- "chr24"
+non_LTR[non_LTR[,1]=="Csco_scaffold_25",1] <- "chr25"
+non_LTR[non_LTR[,1]=="Csco_scaffold_26",1] <- "chr26"
+non_LTR[non_LTR[,1]=="Csco_scaffold_27",1] <- "chr27"
+non_LTR[non_LTR[,1]=="Csco_scaffold_28",1] <- "chr28"
+non_LTR[non_LTR[,1]=="Csco_scaffold_29",1] <- "chr29"
+non_LTR[non_LTR[,1]=="Csco_scaffold_30",1] <- "chr30"
+non_LTR[non_LTR[,1]=="Csco_scaffold_31",1] <- "chr31"
+non_LTR[non_LTR[,1]=="Csco_scaffold_32",1] <- "chr32"
+non_LTR[non_LTR[,1]=="Csco_scaffold_33",1] <- "chr33"
+colnames(non_LTR) <- c("Chromosome", "Start", "End")
+
+non_LTR_1 <- non_LTR[non_LTR$Chromosome=="chr1",]
+non_LTR_1
+non_LTR_2 <- non_LTR[non_LTR$Chromosome=="chr2",]
+non_LTR_2
+non_LTR_3 <- non_LTR[non_LTR$Chromosome=="chr3",]
+non_LTR_3
+non_LTR_4 <- non_LTR[non_LTR$Chromosome=="chr4",]
+non_LTR_4
+non_LTR_5 <- non_LTR[non_LTR$Chromosome=="chr5",]
+non_LTR_5
+non_LTR_6 <- non_LTR[non_LTR$Chromosome=="chr6",]
+non_LTR_6
+non_LTR_7 <- non_LTR[non_LTR$Chromosome=="chr7",]
+non_LTR_7
+non_LTR_8 <- non_LTR[non_LTR$Chromosome=="chr8",]
+non_LTR_8
+non_LTR_9 <- non_LTR[non_LTR$Chromosome=="chr9",]
+non_LTR_9
+non_LTR_10 <- non_LTR[non_LTR$Chromosome=="chr10",]
+non_LTR_10
+non_LTR_11 <- non_LTR[non_LTR$Chromosome=="chr11",]
+non_LTR_11
+non_LTR_12 <- non_LTR[non_LTR$Chromosome=="chr12",]
+non_LTR_12
+non_LTR_13 <- non_LTR[non_LTR$Chromosome=="chr13",]
+non_LTR_13
+non_LTR_14 <- non_LTR[non_LTR$Chromosome=="chr14",]
+non_LTR_14
+non_LTR_15 <- non_LTR[non_LTR$Chromosome=="chr15",]
+non_LTR_15
+non_LTR_16 <- non_LTR[non_LTR$Chromosome=="chr16",]
+non_LTR_16
+non_LTR_17 <- non_LTR[non_LTR$Chromosome=="chr17",]
+non_LTR_17
+non_LTR_18 <- non_LTR[non_LTR$Chromosome=="chr18",]
+non_LTR_18
+non_LTR_19 <- non_LTR[non_LTR$Chromosome=="chr19",]
+non_LTR_19
+non_LTR_20 <- non_LTR[non_LTR$Chromosome=="chr20",]
+non_LTR_20
+non_LTR_21 <- non_LTR[non_LTR$Chromosome=="chr21",]
+non_LTR_21
+non_LTR_22 <- non_LTR[non_LTR$Chromosome=="chr22",]
+non_LTR_22
+non_LTR_23 <- non_LTR[non_LTR$Chromosome=="chr23",]
+non_LTR_23
+non_LTR_24 <- non_LTR[non_LTR$Chromosome=="chr24",]
+non_LTR_24
+non_LTR_25 <- non_LTR[non_LTR$Chromosome=="chr25",]
+non_LTR_25
+non_LTR_26 <- non_LTR[non_LTR$Chromosome=="chr26",]
+non_LTR_26
+non_LTR_27 <- non_LTR[non_LTR$Chromosome=="chr27",]
+non_LTR_27
+non_LTR_28 <- non_LTR[non_LTR$Chromosome=="chr28",]
+non_LTR_28
+non_LTR_29 <- non_LTR[non_LTR$Chromosome=="chr29",]
+non_LTR_29
+non_LTR_30 <- non_LTR[non_LTR$Chromosome=="chr30",]
+non_LTR_30
+non_LTR_31 <- non_LTR[non_LTR$Chromosome=="chr31",]
+non_LTR_31
+non_LTR_32 <- non_LTR[non_LTR$Chromosome=="chr32",]
+non_LTR_32
+non_LTR_33 <- non_LTR[non_LTR$Chromosome=="chr33",]
+non_LTR_33
+
+genomeblocksnon_LTR_1d <- genomeblocksBCR(outblock1, non_LTR_1)
+genomeblocksnon_LTR_1d
+genomeblocksnon_LTR_2d <- genomeblocksBCR(outblock2, non_LTR_2)
+genomeblocksnon_LTR_2d
+genomeblocksnon_LTR_3d <- genomeblocksBCR(outblock3, non_LTR_3)
+genomeblocksnon_LTR_3d
+genomeblocksnon_LTR_4d <- genomeblocksBCR(outblock4, non_LTR_4)
+genomeblocksnon_LTR_4d
+genomeblocksnon_LTR_5d <- genomeblocksBCR(outblock5, non_LTR_5)
+genomeblocksnon_LTR_5d
+genomeblocksnon_LTR_6d <- genomeblocksBCR(outblock6, non_LTR_6)
+genomeblocksnon_LTR_6d
+genomeblocksnon_LTR_7d <- genomeblocksBCR(outblock7, non_LTR_7)
+genomeblocksnon_LTR_7d
+genomeblocksnon_LTR_8d <- genomeblocksBCR(outblock8, non_LTR_8)
+genomeblocksnon_LTR_8d
+genomeblocksnon_LTR_9d <- genomeblocksBCR(outblock9, non_LTR_9)
+genomeblocksnon_LTR_9d
+genomeblocksnon_LTR_10d <- genomeblocksBCR(outblock10, non_LTR_10)
+genomeblocksnon_LTR_10d
+genomeblocksnon_LTR_11d <- genomeblocksBCR(outblock11, non_LTR_11)
+genomeblocksnon_LTR_11d
+genomeblocksnon_LTR_12d <- genomeblocksBCR(outblock12, non_LTR_12)
+genomeblocksnon_LTR_12d
+genomeblocksnon_LTR_13d <- genomeblocksBCR(outblock13, non_LTR_13)
+genomeblocksnon_LTR_13d
+genomeblocksnon_LTR_14d <- genomeblocksBCR(outblock14, non_LTR_14)
+genomeblocksnon_LTR_14d
+genomeblocksnon_LTR_15d <- genomeblocksBCR(outblock15, non_LTR_15)
+genomeblocksnon_LTR_15d
+genomeblocksnon_LTR_16d <- genomeblocksBCR(outblock16, non_LTR_16)
+genomeblocksnon_LTR_16d
+genomeblocksnon_LTR_17d <- genomeblocksBCR(outblock17, non_LTR_17)
+genomeblocksnon_LTR_17d
+genomeblocksnon_LTR_18d <- genomeblocksBCR(outblock18, non_LTR_18)
+genomeblocksnon_LTR_18d
+genomeblocksnon_LTR_19d <- genomeblocksBCR(outblock19, non_LTR_19)
+genomeblocksnon_LTR_19d
+genomeblocksnon_LTR_20d <- genomeblocksBCR(outblock20, non_LTR_20)
+genomeblocksnon_LTR_20d
+genomeblocksnon_LTR_21d <- genomeblocksBCR(outblock21, non_LTR_21)
+genomeblocksnon_LTR_21d
+genomeblocksnon_LTR_22d <- genomeblocksBCR(outblock22, non_LTR_22)
+genomeblocksnon_LTR_22d
+genomeblocksnon_LTR_23d <- genomeblocksBCR(outblock23, non_LTR_23)
+genomeblocksnon_LTR_23d
+genomeblocksnon_LTR_24d <- genomeblocksBCR(outblock24, non_LTR_24)
+genomeblocksnon_LTR_24d
+genomeblocksnon_LTR_25d <- genomeblocksBCR(outblock25, non_LTR_25)
+genomeblocksnon_LTR_25d
+genomeblocksnon_LTR_26d <- genomeblocksBCR(outblock26, non_LTR_26)
+genomeblocksnon_LTR_26d
+genomeblocksnon_LTR_27d <- genomeblocksBCR(outblock27, non_LTR_27)
+genomeblocksnon_LTR_27d
+genomeblocksnon_LTR_28d <- genomeblocksBCR(outblock28, non_LTR_28)
+genomeblocksnon_LTR_28d
+genomeblocksnon_LTR_29d <- genomeblocksBCR(outblock29, non_LTR_29)
+genomeblocksnon_LTR_29d
+genomeblocksnon_LTR_30d <- genomeblocksBCR(outblock30, non_LTR_30)
+genomeblocksnon_LTR_30d
+genomeblocksnon_LTR_31d <- genomeblocksBCR(outblock31, non_LTR_31)
+genomeblocksnon_LTR_31d
+genomeblocksnon_LTR_32d <- genomeblocksBCR(outblock32, non_LTR_32)
+genomeblocksnon_LTR_32d
+genomeblocksnon_LTR_33d <- genomeblocksBCR(outblock33, non_LTR_33)
+genomeblocksnon_LTR_33d
+
+genomeblocksnon_LTR_alld <- rbind(genomeblocksnon_LTR_1d,genomeblocksnon_LTR_2d,genomeblocksnon_LTR_3d,genomeblocksnon_LTR_4d,genomeblocksnon_LTR_5d,genomeblocksnon_LTR_6d,genomeblocksnon_LTR_7d,genomeblocksnon_LTR_8d,genomeblocksnon_LTR_9d,genomeblocksnon_LTR_10d,genomeblocksnon_LTR_11d,genomeblocksnon_LTR_12d,genomeblocksnon_LTR_13d,genomeblocksnon_LTR_14d,genomeblocksnon_LTR_15d,genomeblocksnon_LTR_16d,genomeblocksnon_LTR_17d,genomeblocksnon_LTR_18d,genomeblocksnon_LTR_19d,genomeblocksnon_LTR_20d,genomeblocksnon_LTR_21d,genomeblocksnon_LTR_22d,genomeblocksnon_LTR_23d,genomeblocksnon_LTR_24d,genomeblocksnon_LTR_25d,genomeblocksnon_LTR_26d,genomeblocksnon_LTR_27d,genomeblocksnon_LTR_28d,genomeblocksnon_LTR_29d,genomeblocksnon_LTR_30d,genomeblocksnon_LTR_31d,genomeblocksnon_LTR_32d,genomeblocksnon_LTR_33d)
+
+length(genomeblocksnon_LTR_alld[,4][genomeblocksnon_LTR_alld[,4] == "conserved"])
+length(genomeblocksnon_LTR_alld[,4][genomeblocksnon_LTR_alld[,4] == "fisfus"])
+length(genomeblocksnon_LTR_alld[,4][genomeblocksnon_LTR_alld[,4] == "singlemarker"])
+
+mean(as.numeric(genomeblocksnon_LTR_alld[,5][genomeblocksnon_LTR_alld[,4] == "conserved"]))
+mean(as.numeric(genomeblocksnon_LTR_alld[,5][genomeblocksnon_LTR_alld[,4] == "fisfus"]))
+mean(as.numeric(genomeblocksnon_LTR_alld[,5][genomeblocksnon_LTR_alld[,4] == "singlemarker"]))
+
+sd(as.numeric(genomeblocksnon_LTR_alld[,5][genomeblocksnon_LTR_alld[,4] == "conserved"]))
+sd(as.numeric(genomeblocksnon_LTR_alld[,5][genomeblocksnon_LTR_alld[,4] == "fisfus"]))
+sd(as.numeric(genomeblocksnon_LTR_alld[,5][genomeblocksnon_LTR_alld[,4] == "singlemarker"]))
+
+dim(genomeblocksnon_LTR_alld)
+dim(genomeblocksnon_LTR_alld[genomeblocksnon_LTR_alld[,4] != "singlemarker", ])
+
+dim(genomeblocksGenesall)
+dim(genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", ])
+
+glm_genomeblocks_alld <- genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", -c(2:4)]
+
+
+```
+
+
+TEs separately
+
+```{r}
+
+glm_genomeblocks_alld <- genomeblocksGenesall[genomeblocksGenesall[,5] != "singlemarker", -c(2:4)]
+
+glm_genomeblocks_alld <- cbind(glm_genomeblocks_alld,genomeblockssatDNA_alld[genomeblockssatDNA_alld[,4] != "singlemarker", 5],genomeblockscopia_alld[genomeblockscopia_alld[,4] != "singlemarker", 5], genomeblocksgypsy_alld[genomeblocksgypsy_alld[,4] != "singlemarker", 5], genomeblocksnon_LTR_alld[genomeblocksnon_LTR_alld[,4] != "singlemarker", 5],genomeblocksTE_alld[genomeblocksTE_alld[,4] != "singlemarker", 5])
+
+glm_genomeblocks_alld[,2][glm_genomeblocks_alld[,2]=="conserved"] <- 0
+glm_genomeblocks_alld[,2][glm_genomeblocks_alld[,2]=="fisfus"] <- 1
+
+library(lme4)
+glm_genomeblocks_alld<- data.frame (glm_genomeblocks_alld)
+colnames(glm_genomeblocks_alld) <- c("chromosome", "type", "BCR",  "GC", "Genes", "satDNA", "copia", "gypsy", "non_LTR", "TE")
+fittedModel <- glmer (as.numeric(type) ~ as.numeric(TE) + as.numeric(Genes) + as.numeric(satDNA)+ as.numeric(copia) + as.numeric(gypsy) + as.numeric(non_LTR) + (1|chromosome), data = glm_genomeblocks_alld, family = binomial(link = "logit"))
+summary(fittedModel)
+
+fittedModel2 <- glm (as.numeric(type) ~ as.numeric(TE) + as.numeric(Genes) + as.numeric(satDNA)+ as.numeric(copia) + as.numeric(gypsy) + as.numeric(non_LTR), family = binomial(link = "logit"), data = glm_genomeblocks_alld)
+summary(fittedModel2)
+
+fittedModel3 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + as.numeric(satDNA)+ as.numeric(copia) + as.numeric(gypsy) + as.numeric(non_LTR), family = gaussian(link = "identity"), data = glm_genomeblocks_alld)
+summary(fittedModel3)
+
+fittedModel4 <- glm (as.numeric(type) ~ as.numeric(BCR) + as.numeric(Genes) + as.numeric(satDNA)+ as.numeric(copia) + as.numeric(gypsy) + as.numeric(non_LTR), family = poisson(link = "log"), data = glm_genomeblocks_alld)
+summary(fittedModel4)
+
+library(DHARMa)
+
+simulationOutput <- simulateResiduals(fittedModel = fittedModel, plot = F)
+plot(simulationOutput)
+
+simulationOutput2 <- simulateResiduals(fittedModel = fittedModel2, plot = F)
+plot(simulationOutput2)
+
+simulationOutput3 <- simulateResiduals(fittedModel = fittedModel3, plot = F)
+plot(simulationOutput3)
+
+simulationOutput4 <- simulateResiduals(fittedModel = fittedModel4, plot = F)
+plot(simulationOutput4)
+
+```
+
